@@ -24,7 +24,7 @@ Functions which return 'lazy' sequences are prefixed with 'i' (e.g. itake is a l
 
 ```
 take(5, ireductions(plus, natural_numbers()))
-=>[0, 1, 3, 6, 10]
+=> [0, 1, 3, 6, 10]
 
 def even(x):
 	return (x % 2) == 0
