@@ -24,25 +24,22 @@ Functions which return 'lazy' sequences are prefixed with 'i' (e.g. itake is a l
 
 ```
 take(5, ireductions(plus, natural_numbers()))
-[0, 1, 3, 6, 10]
+=>[0, 1, 3, 6, 10]
 
 def even(x):
 	return (x % 2) == 0
 
 take(5, ifilter(even, natural_numbers()))
-
 => [0, 2, 4, 6, 8]
 
 take(3, ipartition(2, powers_of(2)))
-
 => [[1, 2], [4, 8], [16, 32]]
 
 def ngrams(n, s):
 	return rest(imap(partial(take_last, n), ireductions(conj, s, [])))
 
 ngrams(3, [1,2,3,4,5])
-
-=>[[1], [1, 2], [1, 2, 3], [2, 3, 4], [3, 4, 5]]
+=> [[1], [1, 2], [1, 2, 3], [2, 3, 4], [3, 4, 5]]
 ```
 
 ## TODO
