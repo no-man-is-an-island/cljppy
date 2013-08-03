@@ -2,7 +2,9 @@
 
 A python library extending python's core itertools library with Clojure-like sequence manipulation functions. Most sequence operations at http://clojure.org/sequences have been implemented.
 
-STILL UNDER DEVELOPMENT (i.e. use at your own risk). Since Python isn't optimised for this kind of code, these functions can be slow. Also, iterators are mutable in Python, so the following kind of nonsense happens:
+***USE AT YOUR OWN RISK***
+
+I mainly just built this for fun. Since Python isn't optimised for this kind of code, these functions can be slow. Also, iterators are mutable in Python, so the following kind of nonsense happens:
 ```
 x = natural_numbers()
 
