@@ -20,7 +20,13 @@ take(5, x)
 Functions which return 'lazy' sequences are prefixed with 'i' (e.g. itake is a lazy version of take). The only exception to this is the functions which return an infinite sequence by default (iterate, repeatedly, natural_numbers etc.), which have only one form.
 
 ```
-take(5, ifilter(lambda x: (x % 2) == 0, natural_numbers()))
+take(5, ireductions(plus, natural_numbers()))
+[0, 1, 3, 6, 10]
+
+def even(x):
+	return (x % 2) == 0
+
+take(5, ifilter(even, natural_numbers()))
 
 => [0, 2, 4, 6, 8]
 
@@ -28,10 +34,10 @@ take(3, ipartition(2, powers_of(2)))
 
 => [[1, 2], [4, 8], [16, 32]]
 
-map(take_last(5,ireductions))
+map(take_last(5, ireductions))
 
 def ngrams(n, s):
-	return rest(map(partial(take_last, n), reductions(conj, s, [])))
+	return rest(imap(partial(take_last, n), ireductions(conj, s, [])))
 
 ngrams(2, [1,2,3,4,5])
 
