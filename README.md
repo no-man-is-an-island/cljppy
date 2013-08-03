@@ -40,9 +40,9 @@ take(3, ipartition(2, powers_of(2)))
 def ngrams(n, s):
 	return rest(imap(partial(take_last, n), ireductions(conj, s, [])))
 
-ngrams(2, [1,2,3,4,5])
+ngrams(3, [1,2,3,4,5])
 
-=> [[1], [1,2], [2,3], [3,4], [4,5]]
+=>[[1], [1, 2], [1, 2, 3], [2, 3, 4], [3, 4, 5]]
 ```
 
 ## TODO
