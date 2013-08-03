@@ -28,6 +28,14 @@ take(3, ipartition(2, powers_of(2)))
 
 => [[1, 2], [4, 8], [16, 32]]
 
+map(take_last(5,ireductions))
+
+def ngrams(n, s):
+	return rest(map(partial(take_last, n), reductions(conj, s, [])))
+
+ngrams(2, [1,2,3,4,5])
+
+=> [[1], [1,2], [2,3], [3,4], [4,5]]
 ```
 
 ## TODO
