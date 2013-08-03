@@ -16,6 +16,7 @@ take(5, x)
 
 => [6,7,8,9,10]
 ```
+I might try to sort this out but, even if I do, it might not be fast enough to be useable. 
 
 ## Example usage
 
