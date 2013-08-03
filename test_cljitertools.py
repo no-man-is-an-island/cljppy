@@ -145,6 +145,7 @@ def test_ffirst():
 
 def test_last():
     assert last([], None) == None
+    assert last(iter([1,2,3])) == 3
     assert last([1,2,3]) == 3
 
 def test_second():

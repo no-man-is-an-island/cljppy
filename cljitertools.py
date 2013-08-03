@@ -269,12 +269,16 @@ def last(iterable, default = None):
     """
     Returns the last element of an iterable.
     """
-    lst = list(iterable)
-    l = len(lst)
-    if l == 0:
+    it = iter(iterable)
+    try:
+        x = it.next()
+    except StopIteration:
         return default
-    else:
-        return nth(iterable, l - 1)
+
+    for y in it:
+        x = y
+
+    return x
 
 def irest(iterable):
     """
