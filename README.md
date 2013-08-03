@@ -6,6 +6,8 @@ STILL UNDER DEVELOPMENT (i.e. use at your own risk)
 
 ## Example usage
 
+Functions which return 'lazy' sequences are prefixed with 'i' (e.g. itake is a lazy version of take).
+
 ```
 take(5, ifilter(lambda x: (x % 2) == 0, natural_numbers()))
 
@@ -14,7 +16,6 @@ take(5, ifilter(lambda x: (x % 2) == 0, natural_numbers()))
 take(3, ipartition(2, powers_of(2)))
 
 => [[1, 2], [4, 8], [16, 32]]
-
 
 ```
 
