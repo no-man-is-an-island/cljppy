@@ -32,7 +32,6 @@ def identity(x):
     """
     return x
 
-
 def constantly(x):
     """
     Returns a function that takes any number of arguments and returns x
