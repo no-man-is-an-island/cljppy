@@ -1,6 +1,4 @@
 from itertools import imap
-from cljitertools import take
-
 
 class LazySequenceIterator(object):
     def __init__(self, lazyseq):
@@ -68,14 +66,13 @@ class LazySequence(object):
     def __repr__(self):
         if self.realised and self.print_length >= self.__realised_segment_size:
             return str(self.__realised_segment)
-        return "[" + ', '.join(take(self.print_length,
-                                    imap(str, self.__realised_segment))) + ", ...]"
+
+        return "[" + ', '.join(map(str, self.__realised_segment)[0:100]) + ", ...]"
 
     def __eq__(self, other):
         if type(other) == LazySequence:
             self.realise_all()
             other.realise_all()
-
             return self.__realised_segment == other._LazySequence__realised_segment
 
         elif type(other) == list:

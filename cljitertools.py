@@ -19,6 +19,8 @@ import random
 #-------------------------------------------------------------------------------
 # ALIASES (for consistency of itertools fns with Clojure)
 #-------------------------------------------------------------------------------
+from lazysequence import LazySequence
+
 iconcat = chain
 iremove = ifilterfalse
 
@@ -269,17 +271,26 @@ def ffirst(iterable, default = None):
 def last(iterable, default = None):
     """
     Returns the last element of an iterable.
+    Constant time for sequence like things,
+    linear time for iterables.
     """
-    it = iter(iterable)
-    try:
-        x = it.next()
-    except StopIteration:
-        return default
+    if type(iterable) in (list, tuple, LazySequence):
+        l = len(iterable)
 
-    for y in it:
-        x = y
+        if l == 0:
+            return default
+        return iterable[l - 1]
+    else:
+        it = iter(iterable)
+        try:
+            x = it.next()
+        except StopIteration:
+            return default
 
-    return x
+        for y in it:
+            x = y
+
+        return x
 
 def irest(iterable):
     """
