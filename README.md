@@ -8,7 +8,7 @@ I mainly just built this for fun. Since Python isn't optimised for this kind of 
 
 ## Example usage
 
-All functions return LazySequence objects, which behave like lists (and are considered equal to a list containing the same data), but are lazily evaluated from their source iterator.
+All functions return LazySequence objects, which are immutable, lazily generated from the iterator which generates them, and are considered equal to a list containing the same data.
 Every function that takes a LazySequence will take any kind of iterable object, but be aware that most functions will exhaust iterators (iterators=evil)
 
 ```
