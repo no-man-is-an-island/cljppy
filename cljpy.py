@@ -1,10 +1,10 @@
 #-------------------------------------------------------------------------------
-# Name:        cljitertools
+# Name:        cljpy
 #
-# Purpose:     A library extending itertools with Clojure-style sequence
+# Purpose:     A library extending python with Clojure-style sequence
 #              manipulation.
 #
-# Example:     take(10, iinterleave(powers_of(2), powers_of(3), powers_of(5)))
+# Example:     take(10, interleave(powers_of(2), powers_of(3), powers_of(5)))
 #              => [1, 1, 1, 2, 3, 5, 4, 9, 25, 8, 27]
 #
 # Author:      David Williams

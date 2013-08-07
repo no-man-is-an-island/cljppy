@@ -1,6 +1,6 @@
-# CljIterTools
+# CljPy
 
-A python library extending python's core itertools library with Clojure-like sequence manipulation functions. Most sequence operations at http://clojure.org/sequences have been implemented.
+A python library extending python with Clojure-like lazy sequences and sequence manipulation functions. Most sequence operations at http://clojure.org/sequences have been implemented.
 
 ***USE AT YOUR OWN RISK***
 

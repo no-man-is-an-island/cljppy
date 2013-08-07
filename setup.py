@@ -2,6 +2,7 @@ from distutils.core import setup
 from setuptools.command.test import test as TestCommand
 import sys
 
+
 class PyTest(TestCommand):
     def finalize_options(self):
         TestCommand.finalize_options(self)
@@ -16,9 +17,9 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 
-setup(name='cljitertools',
+setup(name='cljpy',
       version='0.1',
-      py_modules=['cljitertools'],
+      py_modules=['cljpy'],
       tests_require=['pytest==2.3.5'],
       cmdclass = {'test': PyTest}
       )

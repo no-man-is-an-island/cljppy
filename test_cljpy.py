@@ -1,5 +1,5 @@
 #-------------------------------------------------------------------------------
-# Name:        test_cljitertools
+# Name:        test_cljpy
 # Purpose:
 #
 # Author:      David Williams
@@ -8,7 +8,7 @@
 # Copyright:   (c) David Williams 2013
 # Licence:     MINE
 #-------------------------------------------------------------------------------
-from cljitertools import *
+from cljpy import *
 
 def test_identity():
     assert identity(10) == 10
