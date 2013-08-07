@@ -74,7 +74,7 @@ def doall(iterable):
     """
     for _ in iter(iterable):
         pass
-    return list(iterable)
+    return iterable
 
 def doseq(f, iterable):
     """
