@@ -17,7 +17,7 @@ take(5, reductions(plus, natural_numbers()))
 def even(x):
 	return (x % 2) == 0
 
-take(5,ifilter(even, natural_numbers()))
+take(5, filter(even, natural_numbers()))
 => [0, 2, 4, 6, 8]
 
 take(3, partition(2, powers_of(2)))
