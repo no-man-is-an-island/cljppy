@@ -1,5 +1,3 @@
-from itertools import imap
-
 class LazySequenceIterator(object):
     def __init__(self, lazyseq):
         self.__lazyseq = lazyseq
@@ -75,6 +73,7 @@ class LazySequence(object):
             other.realise_all()
             return self.__realised_segment == other._LazySequence__realised_segment
 
+        # A LazySequence can be equal to a list, a la Clojure
         elif type(other) == list:
             self.realise_all()
             return other == self.__realised_segment

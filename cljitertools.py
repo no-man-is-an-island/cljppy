@@ -13,16 +13,9 @@
 # Copyright:   (c) David Williams 2013
 # Licence:     MINE
 #-------------------------------------------------------------------------------
-from itertools import *
+import itertools
 import random
-
-#-------------------------------------------------------------------------------
-# ALIASES (for consistency of itertools fns with Clojure)
-#-------------------------------------------------------------------------------
 from lazysequence import LazySequence
-
-iconcat = chain
-iremove = ifilterfalse
 
 #-------------------------------------------------------------------------------
 # GENERAL FUNCTIONS
@@ -103,7 +96,7 @@ def partial(f, *args):
     Partial application of f to zero or more args
     """
     def _function(*args_inner):
-        return f(*iconcat(args, args_inner))
+        return f(*concat(args, args_inner))
 
     return _function
 
@@ -160,7 +153,14 @@ def not_any(pred, iterable):
 #-------------------------------------------------------------------------------
 # CORE SEQUENCE OPERATIONS ('lazy' versions prefixed by i)
 #-------------------------------------------------------------------------------
-def iconj(iterable, x):
+def map(f, *iterables):
+    """
+    OVERRIDES THE STANDARD PYTHON map
+    """
+    return LazySequence(itertools.imap(f, *iterables))
+
+
+def __iconj(iterable, x):
     """
     Returns an iterable containing all the elements of the iterable followed by
     x.
@@ -173,9 +173,9 @@ def conj(iterable, x):
     """
     Returns a list containing all tbe elements of the iterable, followed by x
     """
-    return list(iconj(iterable, x))
+    return LazySequence(__iconj(iterable, x))
 
-def icons(x, iterable):
+def __icons(x, iterable):
     """
     Returns a new iterable with x as the first element, followed by the elements
     of iterable
@@ -189,25 +189,25 @@ def cons(x, iterable):
     Returns a list with x as the first element, followed by the elements of the
     iterable.
     """
-    return list(icons(x, iterable))
+    return LazySequence(__icons(x, iterable))
 
 def concat(*args):
     """
     Eager version of concat
     """
-    return list(iconcat(*args))
+    return LazySequence(itertools.chain(*args))
 
-def itake(n, iterable):
+def __itake(n, iterable):
     """
     Return an iterable of the first n iterms of the given iterable
     """
-    return islice(iter(iterable), n)
+    return itertools.islice(iter(iterable), n)
 
 def take(n, iterable):
     """
     Return a list of the first n iterms of the given iterable
     """
-    return list(itake(n, iterable))
+    return LazySequence(__itake(n, iterable))
 
 def take_last(n, iterable):
     """
@@ -217,15 +217,21 @@ def take_last(n, iterable):
     # Hmm
     lst = list(iterable)
     l = len(lst)
-    return list(islice(lst, max(0, l - n), l))
+    return list(itertools.islice(lst, max(0, l - n), l))
 
 def nth(iterable, n, default=None):
     """
     Returns the nth item from an iterable, or a default value
     """
-    return next(islice(iter(iterable), n, None), default)
+    if type(iterable) in (LazySequence, list, tuple):
+        try:
+            return iterable[n]
+        except IndexError:
+            return default
+    else:
+        return next(itertools.islice(iter(iterable), n, None), default)
 
-def itake_nth(n, iterable):
+def __itake_nth(n, iterable):
     """
     Returns a lazy sequence of every nth item in the iterable
     """
@@ -240,13 +246,17 @@ def take_nth(n, iterable):
     """
     Returns a list of every nth item in the iterable
     """
-    return list(itake_nth(n, iterable))
+    return LazySequence(__itake_nth(n, iterable))
 
 def rand_nth(iterable):
     """
     Returns a random element from an iterable
     """
-    r = random.randint(0, len(list(iterable)) - 1)
+    if type(iterable) in (LazySequence, list, tuple):
+        l = iterable
+    else:
+        l = list(iterable)
+    r = random.randint(0, len(l) - 1)
     return nth(iterable, r)
 
 def first(iterable, default=None):
@@ -259,7 +269,7 @@ def second(iterable, default = None):
     """
     Returns the second item from an iterable, or a default value.
     """
-    return first(irest(iterable), default)
+    return first(rest(iterable), default)
 
 def ffirst(iterable, default = None):
     """
@@ -292,7 +302,7 @@ def last(iterable, default = None):
 
         return x
 
-def irest(iterable):
+def __irest(iterable):
     """
     Takes an iterable, and returns a generator starting at the
     second element.
@@ -309,64 +319,54 @@ def rest(iterable):
     Takes an iterable, and returns a list starting at the
     second element.
     """
-    return list(irest(iterable))
+    return LazySequence(__irest(iterable))
 
-def inxt(iterable):
+def __inxt(iterable):
     """
     Takes an iterable and returns an iterable starting at the second element.
     Returns None if the iterable is empty
     """
-    it1, it2, it3 = tee(iter(iterable), 3)
+    it1, it2, it3 = itertools.tee(iter(iterable), 3)
     if empty(it1):
         return None
     else:
-        if empty(irest(it3)):
+        if empty(rest(it3)):
             return None
         else:
-            return irest(it2)
+            return rest(it2)
 
 def nxt(iterable):
     """
     Takes an iterable and returns a list starting at the second element.
     Returns None if the iterable is empty
     """
-    n = inxt(iterable)
+    n = __inxt(iterable)
     if n == None:
         return None
     else:
-        return list(n)
+        return LazySequence(n)
 
 def fnxt(iterable, default = None):
     """
     Same as first(inext(iterable))
     """
-    n = inxt(iterable)
+    n = nxt(iterable)
     if n == None:
         return default
     else:
         return first(n, default)
 
-def innxt(iterable):
-    """
-    Same as inxt(inxt(iterable))
-    """
-    n = inxt(iterable)
-    if n == None:
-        return None
-    else:
-        return inxt(n)
-
 def nnxt(iterable):
     """
     Same as nxt(inxt(iterable))
     """
-    n = inxt(iterable)
+    n = nxt(iterable)
     if n == None:
         return None
     else:
         return nxt(n)
 
-def idrop(n, iterable):
+def __idrop(n, iterable):
     """
     Drops the first n items of the iterable, then returns a new iterable
     """
@@ -381,9 +381,9 @@ def drop(n, iterable):
     """
     Returns a list without the first n items of the iterable.
     """
-    return list(idrop(n, iterable))
+    return LazySequence(__idrop(n, iterable))
 
-def idrop_while(pred, iterable):
+def __idrop_while(pred, iterable):
     """
     Drops items from an iterable while pred is True. Returns a new iterable
     starting from the first item for while pred(item) is false.
@@ -400,7 +400,7 @@ def drop_while(pred, iterable):
     Drops items from an iterable while pred is True. Returns a list
     starting from the first item for while pred(item) is false.
     """
-    return list(idrop_while(pred, iterable))
+    return LazySequence(__idrop_while(pred, iterable))
 
 def drop_last(n, iterable):
     """
@@ -409,7 +409,7 @@ def drop_last(n, iterable):
     # YUCK
     lst = list(iterable)
     l = len(lst)
-    return list(islice(lst, 0, max(0, l - n)))
+    return LazySequence(itertools.islice(lst, 0, max(0, l - n)))
 
 def but_last(iterable):
     """
@@ -417,35 +417,42 @@ def but_last(iterable):
     """
     return drop_last(1, iterable)
 
+def filter(pred, iterable):
+    """
+    Returns a list from an iterable with all values for which the predicate
+    returns true removed.
+    """
+    return LazySequence(itertools.ifilter(pred, iterable))
+
 def remove(pred, iterable):
     """
     Returns a list from an iterable with all values for which the predicate
     returns true removed.
     """
-    return list(iremove(pred, iterable))
+    return LazySequence(itertools.ifilterfalse(pred, iterable))
 
-def imapcat(f, *iterables):
+def __imapcat(f, *iterables):
     """
     Takes a function f and zero or more iterables. Returns a generator which
     contains a mapping of f over the concatenation of the iterables.
     """
-    return imap(f, iconcat(*iterables))
+    return itertools.imap(f, concat(*iterables))
 
 def mapcat(f, *iterables):
     """
     Takes a function f and zero or more iterables. Returns a list which
     contains a mapping of f over the concatenation of the iterables.
     """
-    return list(imapcat(f, *iterables))
+    return LazySequence(__imapcat(f, *iterables))
 
-def imap_indexed(f, iterable):
+def __imap_indexed(f, iterable):
     """
     Returns a lazy sequence consisting of the result of applying f to 0
     and the first item of coll, followed by applying f to 1 and the second
     item in coll, etc, until coll is exhausted. Thus function f should
     accept 2 arguments, index and item.
     """
-    return imap(f, iterable, natural_numbers())
+    return itertools.imap(f, iterable, natural_numbers())
 
 def map_indexed(f, iterable):
     """
@@ -454,19 +461,19 @@ def map_indexed(f, iterable):
     item in coll, etc, until coll is exhausted. Thus function f should
     accept 2 arguments, index and item.
     """
-    return list(imap_indexed(f, iterable))
+    return LazySequence(__imap_indexed(f, iterable))
 
-def iflatten(listOfLists):
+def __iflatten(listOfLists):
     """
     Flatten one level of nesting, and return an iterable.
     """
-    return apply(iconcat, listOfLists)
+    return apply(concat, listOfLists)
 
 def flatten(listOfLists):
     """
     Flatten one level of nesting, returning a list.
     """
-    return list(iflatten(listOfLists))
+    return LazySequence(__iflatten(listOfLists))
 
 def some(pred, iterable):
     """
@@ -478,7 +485,7 @@ def some(pred, iterable):
             return x
     return None
 
-def ikeep(f, iterable):
+def __ikeep(f, iterable):
     """
     Returns a iterable of f(x) for the x in iterable where f(x) is not None.
     NB: If the return value is False, it will still be included
@@ -493,43 +500,47 @@ def keep(f, iterable):
     Returns a list of f(x) for the x in iterable where f(x) is not None.
     NB: If the return value is False, it will still be included
     """
-    return list(ikeep(f, iterable))
+    return LazySequence(__ikeep(f, iterable))
 
-def iinterleave(*cs):
+def __iinterleave(*cs):
     """
     Returns a lazy seq of the first item in each it, then the second etc.
     Continues until the end of the smallest sequence.
     """
     if len(cs) == 0:
         return
-    iterators = map(iter, cs)
+    iterators = list(map(iter, cs))
 
     while True:
+        vals = []
         try:
-            vals = map(next, iterators)
+            for it in iterators:
+                vals.append(it.next())
         except StopIteration:
             break
+
         for val in vals:
             yield val
+
 
 def interleave(*cs):
     """
     Returns a list containing the first item in each it, then the second etc.
     Continues until the end of the smallest sequence
     """
-    return list(iinterleave(*cs))
+    return LazySequence(__iinterleave(*cs))
 
-def iinterpose(sep, iterable):
+def __iinterpose(sep, iterable):
     """
     Returns a lazy seq of the elements of the iterable separated by sep
     """
-    return irest(iinterleave(repeat(sep), iterable))
+    return rest(interleave(itertools.repeat(sep), iterable))
 
 def interpose(sep, iterable):
     """
     Returns a list of the elements of the iterable separated by sep
     """
-    return list(iinterpose(sep, iterable))
+    return LazySequence(__iinterpose(sep, iterable))
 
 def zipmap(keys, vals):
     """
@@ -537,7 +548,7 @@ def zipmap(keys, vals):
     """
     return dict(zip(keys, vals))
 
-def ipartition(n, iterable, step = None):
+def __ipartition(n, iterable, step = None):
     """
     Returns a lazy sequence of lists of n items each, at offsets step
     apart. If step is not supplied, defaults to n, i.e. the partitions
@@ -554,7 +565,7 @@ def ipartition(n, iterable, step = None):
         last_n = take_last(n, last_n)
 
         if step_count == step and len(last_n) == n:
-            y = map(identity, last_n) # Damn mutable data!
+            y = list(map(identity, last_n)) # Damn mutable data!
             step_count = 0
             yield y
 
@@ -564,9 +575,9 @@ def partition(n, iterable, step = None):
     apart. If step is not supplied, defaults to n, i.e. the partitions
     do not overlap.
     """
-    return list(ipartition(n, iterable, step))
+    return LazySequence(__ipartition(n, iterable, step))
 
-def ipartition_all(n, iterable, step = None):
+def __ipartition_all(n, iterable, step = None):
     """
     Returns a lazy sequence of lists of n items each, at offsets step
     apart. If step is not supplied, defaults to n, i.e. the partitions
@@ -585,11 +596,11 @@ def ipartition_all(n, iterable, step = None):
         last_n = take_last(n, last_n)
 
         if step_count == step and len(last_n) == n:
-            y = map(identity, last_n) # Damn mutable data!
+            y = list(map(identity, last_n)) # Damn mutable data!
             step_count = 0
             yield y
 
-    for x in takewhile(not_empty, iterate(rest, last_n)):
+    for x in itertools.takewhile(not_empty, iterate(rest, last_n)):
         if step_count == step:
             yield x
             step_count = 0
@@ -601,14 +612,14 @@ def partition_all(n, iterable, step = None):
     apart. If step is not supplied, defaults to n, i.e. the partitions
     do not overlap.
     """
-    return list(ipartition_all(n, iterable, step))
+    return LazySequence(__ipartition_all(n, iterable, step))
 
-def ipartition_by(f, iterable):
+def __ipartition_by(f, iterable):
     """
     Applies f to each value in iterable, splitting it each time f returns
     a new value.  Returns a lazy seq of partitions.
     """
-    it1, it2 = tee(iter(iterable))
+    it1, it2 = itertools.tee(iter(iterable))
     if empty(it1):
         return
 
@@ -631,9 +642,9 @@ def partition_by(f, iterable):
     Applies f to each value in iterable, splitting it each time f returns
     a new value.  Returns a list of partitions.
     """
-    return list(ipartition_by(f, iterable))
+    return LazySequence(__ipartition_by(f, iterable))
 
-def ireductions(function, iterable, initializer = None):
+def __ireductions(function, iterable, initializer = None):
     """
     Returns a lazy seq of the intermediate values of a reduce  of an iterable
     by f, starting with init. If init is not given, the first value in the
@@ -659,12 +670,19 @@ def reductions(function, iterable, initializer = None):
     by f, starting with init. If init is not given, the first value in the
     iterable is used.
     """
-    return list(ireductions(function, iterable, initializer))
+    return LazySequence(__ireductions(function, iterable, initializer))
 
 #-------------------------------------------------------------------------------
 # INFINITE ITERATORS (these are all lazy for obvious reasons)
 #-------------------------------------------------------------------------------
-def repeatedly(f, n = None):
+def repeat(x):
+    """
+    Returns an infinite lazy sequence of x
+    """
+    return LazySequence(itertools.repeat(x))
+
+
+def __irepeatedly(f, n = None):
     """
     Takes a zero-arity function and returns a lazy sequence of f().
     Optionally takes an integer n to limit the number of calls.
@@ -673,10 +691,18 @@ def repeatedly(f, n = None):
         while True:
             yield f()
     else:
-        for _ in repeat(None, n):
+        for _ in itertools.repeat(None, n):
             yield f()
 
-def iterate(f, x, n = None):
+def repeatedly(f, n = None):
+    """
+    Takes a zero-arity function and returns a lazy sequence of f().
+    Optionally takes an integer n to limit the number of calls.
+    """
+    return LazySequence(__irepeatedly(f, n))
+
+
+def __iiterate(f, x, n = None):
     """
     Returns a generator of x, (f x), (f (f x)) etc.
     Optionally takes an integer n to limit the number of calls.
@@ -687,24 +713,44 @@ def iterate(f, x, n = None):
             yield acc
             acc = f(acc)
     else:
-        for _ in repeat(None, n):
+        for _ in itertools.repeat(None, n):
             yield acc
             acc = f(acc)
 
-def natural_numbers():
+def iterate(f, x, n = None):
+    """
+    Returns a lazy sequence of x, (f x), (f (f x)) etc.
+    Optionally takes an integer n to limit the number of calls.
+    """
+    return LazySequence(__iiterate(f, x, n))
+
+
+def __inatural_numbers():
     """
     The natural numbers (starting with 0 of course).
     range is DEFINITELY preferable.. this is just a toy example
     """
     return iterate(partial(plus, 1), 0)
 
-def powers_of(n):
+def natural_numbers():
+    """
+    A lazy sequence of the natural numbers
+    """
+    return LazySequence(__inatural_numbers())
+
+def __ipowers_of(n):
     """
     Lazily returns all powers of n, starting with 1
     """
     return iterate(partial(mult, n), 1)
 
-def fibonacci(a = 1, b = 1):
+def powers_of(n):
+    """
+    Lazily returns all powers of n, starting with 1
+    """
+    return LazySequence(__ipowers_of(n))
+
+def __ifibonacci(a = 1, b = 1):
     """
     Lazily returns the fibonacci sequence
     """
@@ -713,3 +759,9 @@ def fibonacci(a = 1, b = 1):
         c = a + b
         a = b
         b = c
+
+def fibonacci(a = 1,b = 1):
+    """
+    Lazily returns the fibonacci sequence
+    """
+    return LazySequence(__ifibonacci(a, b))
