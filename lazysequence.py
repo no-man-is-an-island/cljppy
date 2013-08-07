@@ -15,7 +15,7 @@ class LazySequenceIterator(object):
             raise StopIteration
 
     def __iter__(self):
-        return iter(self.__lazyseq)
+        return self
 
 
 class LazySequence(object):
