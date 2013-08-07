@@ -65,7 +65,7 @@ class LazySequence(object):
         if self.realised and self.print_length >= self.__realised_segment_size:
             return str(self.__realised_segment)
 
-        return "[" + ', '.join(map(str, self.__realised_segment)[0:100]) + ", ...]"
+        return "[" + ', '.join(map(str, self.__realised_segment)[0:self.print_length]) + ", ...]"
 
     def __eq__(self, other):
         if type(other) == LazySequence:
