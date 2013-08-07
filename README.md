@@ -8,7 +8,8 @@ I mainly just built this for fun. Since Python isn't optimised for this kind of 
 
 ## Example usage
 
-All functions return LazySequence objects, which behave like lists (and can be equal to a list containing the same data), but are lazily evaluated. Everything should work when passed a list, tuple or iterator though (but iterators are mutable and evil, so please try to avoid using them).
+All functions return LazySequence objects, which behave like lists (and are considered equal to a list containing the same data), but are lazily evaluated from their source iterator.
+Every function that takes a LazySequence will take any kind of iterable object, but be aware that most functions will exhaust iterators (iterators=evil)
 
 ```
 take(5, reductions(plus, natural_numbers()))
