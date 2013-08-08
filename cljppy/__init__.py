@@ -15,7 +15,7 @@
 #-------------------------------------------------------------------------------
 import itertools
 import random
-from lazysequence import LazySequence
+from cljppy.lazysequence import LazySequence
 
 #-------------------------------------------------------------------------------
 # GENERAL FUNCTIONS
