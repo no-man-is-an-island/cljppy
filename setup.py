@@ -19,7 +19,7 @@ class PyTest(TestCommand):
 
 setup(name='cljppy',
       version='0.1',
-      package_dir={'':'cljppy'},
+#      package_dir={'':'cljppy'},
       packages=['cljppy'],
       tests_require=['pytest==2.3.5'],
       cmdclass = {'test': PyTest}
