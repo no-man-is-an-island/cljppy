@@ -8,7 +8,7 @@
 # Copyright:   (c) David Williams 2013
 # Licence:     MINE
 #-------------------------------------------------------------------------------
-from cljpy import *
+from cljppy import *
 
 def test_identity():
     assert identity(10) == 10

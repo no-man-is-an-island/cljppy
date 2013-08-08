@@ -1,4 +1,6 @@
-# CljPy
+# Cljppy
+
+![alt text](http://www.psdgraphics.com/file/isolated-paper-clip.jpg "Paperclip")
 
 A python library extending python with Clojure-like lazy sequences and sequence manipulation functions. Most sequence operations at http://clojure.org/sequences have been implemented.
 

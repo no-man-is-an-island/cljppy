@@ -17,9 +17,9 @@ class PyTest(TestCommand):
         sys.exit(errno)
 
 
-setup(name='cljpy',
+setup(name='cljppy',
       version='0.1',
-      py_modules=['cljpy'],
+      py_modules=['cljppy'],
       tests_require=['pytest==2.3.5'],
       cmdclass = {'test': PyTest}
       )
