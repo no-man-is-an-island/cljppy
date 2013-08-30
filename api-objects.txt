@@ -89,6 +89,7 @@ cljppy.lazysequence.LazySequence.__ne__	cljppy.lazysequence.LazySequence-class.h
 cljppy.lazysequence.LazySequence.__getitem__	cljppy.lazysequence.LazySequence-class.html#__getitem__
 cljppy.lazysequence.LazySequence.realise_all	cljppy.lazysequence.LazySequence-class.html#realise_all
 cljppy.lazysequence.LazySequence.__iter__	cljppy.lazysequence.LazySequence-class.html#__iter__
+cljppy.lazysequence.LazySequence.realise_to	cljppy.lazysequence.LazySequence-class.html#realise_to
 cljppy.lazysequence.LazySequence.__eq__	cljppy.lazysequence.LazySequence-class.html#__eq__
 cljppy.lazysequence.LazySequence.realise_next	cljppy.lazysequence.LazySequence-class.html#realise_next
 cljppy.lazysequence.LazySequence.__repr__	cljppy.lazysequence.LazySequence-class.html#__repr__
