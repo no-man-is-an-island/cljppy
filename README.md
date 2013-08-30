@@ -4,6 +4,8 @@
 
 A python library extending python with Clojure-like lazy sequences and sequence manipulation functions. Most sequence operations at http://clojure.org/sequences have been implemented.
 
+API Docs can be found <a href="http://no-man-is-an-island.github.io/cljppy/" target="_blank">here</a>
+
 ***USE AT YOUR OWN RISK***
 
 I mainly just built this for fun. Since Python isn't optimised for this kind of code, these functions can be slow.
