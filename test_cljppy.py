@@ -287,6 +287,8 @@ def test_reductions():
 
 def test_cycle():
     assert take(5, cycle([1, 2, 3])) == [1, 2, 3, 1, 2]
+    assert take(5, cycle([])) == []
+    # assert take(5, cycle(iter([])) == [] # Hmm.. can't see a nice way to do this
 
 def test_repeatedly():
     # NB: plus has a zero arity form that returns 0 (the identity)

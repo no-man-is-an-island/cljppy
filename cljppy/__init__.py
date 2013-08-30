@@ -705,6 +705,9 @@ def __cycle(iterable):
     Returns an infinite generator of repetitions of the items in
     the iterable
     """
+    if empty(iterable):
+        return
+
     while True:
         for x in iterable:
             yield x
