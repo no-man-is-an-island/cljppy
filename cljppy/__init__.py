@@ -40,9 +40,9 @@ def plus(*args):
     """
     Multiargument addition - mainly for testing during development.
     Returns 0 (identity) when sero args passed.. SLOW AS HELL
-
-    e.g. reduce(plus, [1,2,3]) -> 6
-         apply(plus, [1,2,3]) -> 6
+    e.g. 
+    reduce(plus, [1,2,3]) -> 6
+    apply(plus, [1,2,3]) -> 6
     """
     if empty(args):
         return 0
@@ -126,7 +126,7 @@ def not_empty(iterable):
 def every(pred, iterable):
     """
     Predicate: pred(x) is true for every x in the iterable
-     Warning - this will exhaust an iterator if passed in.
+    Warning - this will exhaust an iterator if passed in.
     """
     for x in iter(iterable):
         if not pred(x):
