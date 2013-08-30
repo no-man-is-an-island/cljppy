@@ -30,7 +30,12 @@
       <th>&nbsp;&nbsp;&nbsp;<a
         href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
 
-      <th class="navbar" width="100%"></th>
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >Cljppy</th>
+          </tr></table></th>
   </tr>
 </table>
 <table width="100%" cellpadding="0" cellspacing="0">
@@ -99,7 +104,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="constantly"></a><span class="summary-sig-name">constantly</span>(<span class="summary-sig-arg">x</span>)</span><br />
+          <td><span class="summary-sig"><a href="cljppy-module.html#constantly" class="summary-sig-name">constantly</a>(<span class="summary-sig-arg">x</span>)</span><br />
       Returns a function that takes any number of arguments and returns x</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="cljppy-pysrc.html#constantly">source&nbsp;code</a></span>
@@ -222,7 +227,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="partial"></a><span class="summary-sig-name">partial</span>(<span class="summary-sig-arg">f</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#partial" class="summary-sig-name">partial</a>(<span class="summary-sig-arg">f</span>,
         <span class="summary-sig-arg">*args</span>)</span><br />
       Partial application of f to zero or more args</td>
           <td align="right" valign="top">
@@ -274,10 +279,10 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="every"></a><span class="summary-sig-name">every</span>(<span class="summary-sig-arg">pred</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#every" class="summary-sig-name">every</a>(<span class="summary-sig-arg">pred</span>,
         <span class="summary-sig-arg">iterable</span>)</span><br />
-      Predicate: pred(x) is true for every x in the iterable
- Warning - this will exhaust an iterator if passed in.</td>
+      Predicate: pred(x) is true for every x in the iterable Warning - this
+      will exhaust an iterator if passed in.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="cljppy-pysrc.html#every">source&nbsp;code</a></span>
             
@@ -293,7 +298,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="not_every"></a><span class="summary-sig-name">not_every</span>(<span class="summary-sig-arg">pred</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#not_every" class="summary-sig-name">not_every</a>(<span class="summary-sig-arg">pred</span>,
         <span class="summary-sig-arg">iterable</span>)</span><br />
       Predicate: pred(x) is false for some x in the iterable Warning - this
       will exhaust an iterator if passed in.</td>
@@ -312,7 +317,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="not_any"></a><span class="summary-sig-name">not_any</span>(<span class="summary-sig-arg">pred</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#not_any" class="summary-sig-name">not_any</a>(<span class="summary-sig-arg">pred</span>,
         <span class="summary-sig-arg">iterable</span>)</span><br />
       Predicate: pred(x) is false for every x in the iterable Warning - 
       this will exhaust an iterator if passed in.</td>
@@ -331,7 +336,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="map"></a><span class="summary-sig-name">map</span>(<span class="summary-sig-arg">f</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#map" class="summary-sig-name">map</a>(<span class="summary-sig-arg">f</span>,
         <span class="summary-sig-arg">*iterables</span>)</span><br />
       OVERRIDES THE STANDARD PYTHON map</td>
           <td align="right" valign="top">
@@ -349,7 +354,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="conj"></a><span class="summary-sig-name">conj</span>(<span class="summary-sig-arg">iterable</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#conj" class="summary-sig-name">conj</a>(<span class="summary-sig-arg">iterable</span>,
         <span class="summary-sig-arg">x</span>)</span><br />
       Returns a list containing all tbe elements of the iterable, followed 
       by x</td>
@@ -368,7 +373,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="cons"></a><span class="summary-sig-name">cons</span>(<span class="summary-sig-arg">x</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#cons" class="summary-sig-name">cons</a>(<span class="summary-sig-arg">x</span>,
         <span class="summary-sig-arg">iterable</span>)</span><br />
       Returns a list with x as the first element, followed by the elements 
       of the iterable.</td>
@@ -387,7 +392,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="concat"></a><span class="summary-sig-name">concat</span>(<span class="summary-sig-arg">*args</span>)</span><br />
+          <td><span class="summary-sig"><a href="cljppy-module.html#concat" class="summary-sig-name">concat</a>(<span class="summary-sig-arg">*args</span>)</span><br />
       Eager version of concat</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="cljppy-pysrc.html#concat">source&nbsp;code</a></span>
@@ -404,7 +409,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="take"></a><span class="summary-sig-name">take</span>(<span class="summary-sig-arg">n</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#take" class="summary-sig-name">take</a>(<span class="summary-sig-arg">n</span>,
         <span class="summary-sig-arg">iterable</span>)</span><br />
       Return a list of the first n iterms of the given iterable</td>
           <td align="right" valign="top">
@@ -440,7 +445,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="nth"></a><span class="summary-sig-name">nth</span>(<span class="summary-sig-arg">iterable</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#nth" class="summary-sig-name">nth</a>(<span class="summary-sig-arg">iterable</span>,
         <span class="summary-sig-arg">n</span>,
         <span class="summary-sig-arg">default</span>=<span class="summary-sig-default">None</span>)</span><br />
       Returns the nth item from an iterable, or a default value</td>
@@ -459,7 +464,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="take_nth"></a><span class="summary-sig-name">take_nth</span>(<span class="summary-sig-arg">n</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#take_nth" class="summary-sig-name">take_nth</a>(<span class="summary-sig-arg">n</span>,
         <span class="summary-sig-arg">iterable</span>)</span><br />
       Returns a list of every nth item in the iterable</td>
           <td align="right" valign="top">
@@ -477,7 +482,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="rand_nth"></a><span class="summary-sig-name">rand_nth</span>(<span class="summary-sig-arg">iterable</span>)</span><br />
+          <td><span class="summary-sig"><a href="cljppy-module.html#rand_nth" class="summary-sig-name">rand_nth</a>(<span class="summary-sig-arg">iterable</span>)</span><br />
       Returns a random element from an iterable</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="cljppy-pysrc.html#rand_nth">source&nbsp;code</a></span>
@@ -494,7 +499,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="first"></a><span class="summary-sig-name">first</span>(<span class="summary-sig-arg">iterable</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#first" class="summary-sig-name">first</a>(<span class="summary-sig-arg">iterable</span>,
         <span class="summary-sig-arg">default</span>=<span class="summary-sig-default">None</span>)</span><br />
       Returns the first value from an iterable, or a default value</td>
           <td align="right" valign="top">
@@ -512,7 +517,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="second"></a><span class="summary-sig-name">second</span>(<span class="summary-sig-arg">iterable</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#second" class="summary-sig-name">second</a>(<span class="summary-sig-arg">iterable</span>,
         <span class="summary-sig-arg">default</span>=<span class="summary-sig-default">None</span>)</span><br />
       Returns the second item from an iterable, or a default value.</td>
           <td align="right" valign="top">
@@ -566,7 +571,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="rest"></a><span class="summary-sig-name">rest</span>(<span class="summary-sig-arg">iterable</span>)</span><br />
+          <td><span class="summary-sig"><a href="cljppy-module.html#rest" class="summary-sig-name">rest</a>(<span class="summary-sig-arg">iterable</span>)</span><br />
       Takes an iterable, and returns a list starting at the second element.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="cljppy-pysrc.html#rest">source&nbsp;code</a></span>
@@ -600,7 +605,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="fnxt"></a><span class="summary-sig-name">fnxt</span>(<span class="summary-sig-arg">iterable</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#fnxt" class="summary-sig-name">fnxt</a>(<span class="summary-sig-arg">iterable</span>,
         <span class="summary-sig-arg">default</span>=<span class="summary-sig-default">None</span>)</span><br />
       Same as first(inext(iterable))</td>
           <td align="right" valign="top">
@@ -618,7 +623,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="nnxt"></a><span class="summary-sig-name">nnxt</span>(<span class="summary-sig-arg">iterable</span>)</span><br />
+          <td><span class="summary-sig"><a href="cljppy-module.html#nnxt" class="summary-sig-name">nnxt</a>(<span class="summary-sig-arg">iterable</span>)</span><br />
       Same as nxt(inxt(iterable))</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="cljppy-pysrc.html#nnxt">source&nbsp;code</a></span>
@@ -635,7 +640,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="drop"></a><span class="summary-sig-name">drop</span>(<span class="summary-sig-arg">n</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#drop" class="summary-sig-name">drop</a>(<span class="summary-sig-arg">n</span>,
         <span class="summary-sig-arg">iterable</span>)</span><br />
       Returns a list without the first n items of the iterable.</td>
           <td align="right" valign="top">
@@ -671,7 +676,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="drop_last"></a><span class="summary-sig-name">drop_last</span>(<span class="summary-sig-arg">n</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#drop_last" class="summary-sig-name">drop_last</a>(<span class="summary-sig-arg">n</span>,
         <span class="summary-sig-arg">iterable</span>)</span><br />
       Returns a list of the iterable elements without the last n elements</td>
           <td align="right" valign="top">
@@ -689,7 +694,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="but_last"></a><span class="summary-sig-name">but_last</span>(<span class="summary-sig-arg">iterable</span>)</span><br />
+          <td><span class="summary-sig"><a href="cljppy-module.html#but_last" class="summary-sig-name">but_last</a>(<span class="summary-sig-arg">iterable</span>)</span><br />
       Returns a list of all elements of an iterable but the last</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="cljppy-pysrc.html#but_last">source&nbsp;code</a></span>
@@ -706,7 +711,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="filter"></a><span class="summary-sig-name">filter</span>(<span class="summary-sig-arg">pred</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#filter" class="summary-sig-name">filter</a>(<span class="summary-sig-arg">pred</span>,
         <span class="summary-sig-arg">iterable</span>)</span><br />
       Returns a list from an iterable with all values for which the 
       predicate returns true removed.</td>
@@ -725,7 +730,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="remove"></a><span class="summary-sig-name">remove</span>(<span class="summary-sig-arg">pred</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#remove" class="summary-sig-name">remove</a>(<span class="summary-sig-arg">pred</span>,
         <span class="summary-sig-arg">iterable</span>)</span><br />
       Returns a list from an iterable with all values for which the 
       predicate returns true removed.</td>
@@ -782,7 +787,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="flatten"></a><span class="summary-sig-name">flatten</span>(<span class="summary-sig-arg">listOfLists</span>)</span><br />
+          <td><span class="summary-sig"><a href="cljppy-module.html#flatten" class="summary-sig-name">flatten</a>(<span class="summary-sig-arg">listOfLists</span>)</span><br />
       Flatten one level of nesting, returning a list.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="cljppy-pysrc.html#flatten">source&nbsp;code</a></span>
@@ -799,7 +804,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="some"></a><span class="summary-sig-name">some</span>(<span class="summary-sig-arg">pred</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#some" class="summary-sig-name">some</a>(<span class="summary-sig-arg">pred</span>,
         <span class="summary-sig-arg">iterable</span>)</span><br />
       Returns the first value x of an iterator where pred(x) is truthy, or 
       None otherwise (is returning None idiomatic??)</td>
@@ -854,7 +859,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="interpose"></a><span class="summary-sig-name">interpose</span>(<span class="summary-sig-arg">sep</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#interpose" class="summary-sig-name">interpose</a>(<span class="summary-sig-arg">sep</span>,
         <span class="summary-sig-arg">iterable</span>)</span><br />
       Returns a list of the elements of the iterable separated by sep</td>
           <td align="right" valign="top">
@@ -872,7 +877,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="zipmap"></a><span class="summary-sig-name">zipmap</span>(<span class="summary-sig-arg">keys</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#zipmap" class="summary-sig-name">zipmap</a>(<span class="summary-sig-arg">keys</span>,
         <span class="summary-sig-arg">vals</span>)</span><br />
       Returns a dictionary with keys mapped to the corresponding vals</td>
           <td align="right" valign="top">
@@ -968,7 +973,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="repeat"></a><span class="summary-sig-name">repeat</span>(<span class="summary-sig-arg">x</span>)</span><br />
+          <td><span class="summary-sig"><a href="cljppy-module.html#repeat" class="summary-sig-name">repeat</a>(<span class="summary-sig-arg">x</span>)</span><br />
       Returns an infinite lazy sequence of x</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="cljppy-pysrc.html#repeat">source&nbsp;code</a></span>
@@ -1022,7 +1027,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="natural_numbers"></a><span class="summary-sig-name">natural_numbers</span>()</span><br />
+          <td><span class="summary-sig"><a href="cljppy-module.html#natural_numbers" class="summary-sig-name">natural_numbers</a>()</span><br />
       A lazy sequence of the natural numbers</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="cljppy-pysrc.html#natural_numbers">source&nbsp;code</a></span>
@@ -1039,7 +1044,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="powers_of"></a><span class="summary-sig-name">powers_of</span>(<span class="summary-sig-arg">n</span>)</span><br />
+          <td><span class="summary-sig"><a href="cljppy-module.html#powers_of" class="summary-sig-name">powers_of</a>(<span class="summary-sig-arg">n</span>)</span><br />
       Lazily returns all powers of n, starting with 1</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="cljppy-pysrc.html#powers_of">source&nbsp;code</a></span>
@@ -1056,7 +1061,7 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="fibonacci"></a><span class="summary-sig-name">fibonacci</span>(<span class="summary-sig-arg">a</span>=<span class="summary-sig-default">1</span>,
+          <td><span class="summary-sig"><a href="cljppy-module.html#fibonacci" class="summary-sig-name">fibonacci</a>(<span class="summary-sig-arg">a</span>=<span class="summary-sig-default">1</span>,
         <span class="summary-sig-arg">b</span>=<span class="summary-sig-default">1</span>)</span><br />
       Lazily returns the fibonacci sequence</td>
           <td align="right" valign="top">
@@ -1081,7 +1086,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="__package__"></a><span class="summary-name">__package__</span> = <code title="'cljppy'"><code class="variable-quote">'</code><code class="variable-string">cljppy</code><code class="variable-quote">'</code></code>
+        <a href="cljppy-module.html#__package__" class="summary-name">__package__</a> = <code title="'cljppy'"><code class="variable-quote">'</code><code class="variable-string">cljppy</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 </table>
@@ -1114,6 +1119,26 @@
   </dl>
 </td></tr></table>
 </div>
+<a name="constantly"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">constantly</span>(<span class="sig-arg">x</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#constantly">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a function that takes any number of arguments and returns 
+  x</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="plus"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -1128,15 +1153,9 @@
     </td>
   </tr></table>
   
-  <pre class="literalblock">
-
-Multiargument addition - mainly for testing during development.
-Returns 0 (identity) when sero args passed.. SLOW AS HELL
-
-e.g. reduce(plus, [1,2,3]) -&gt; 6
-     apply(plus, [1,2,3]) -&gt; 6
-
-</pre>
+  <p>Multiargument addition - mainly for testing during development. 
+  Returns 0 (identity) when sero args passed.. SLOW AS HELL e.g. 
+  reduce(plus, [1,2,3]) -&gt; 6 apply(plus, [1,2,3]) -&gt; 6</p>
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -1244,6 +1263,26 @@ e.g. reduce(plus, [1,2,3]) -&gt; 6
   </dl>
 </td></tr></table>
 </div>
+<a name="partial"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">partial</span>(<span class="sig-arg">f</span>,
+        <span class="sig-arg">*args</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#partial">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Partial application of f to zero or more args</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="empty"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -1284,6 +1323,170 @@ e.g. reduce(plus, [1,2,3]) -&gt; 6
   </dl>
 </td></tr></table>
 </div>
+<a name="every"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">every</span>(<span class="sig-arg">pred</span>,
+        <span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#every">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Predicate: pred(x) is true for every x in the iterable Warning - this 
+  will exhaust an iterator if passed in.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="not_every"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">not_every</span>(<span class="sig-arg">pred</span>,
+        <span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#not_every">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Predicate: pred(x) is false for some x in the iterable Warning - this 
+  will exhaust an iterator if passed in.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="not_any"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">not_any</span>(<span class="sig-arg">pred</span>,
+        <span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#not_any">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Predicate: pred(x) is false for every x in the iterable Warning - this
+  will exhaust an iterator if passed in.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="map"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">map</span>(<span class="sig-arg">f</span>,
+        <span class="sig-arg">*iterables</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#map">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>OVERRIDES THE STANDARD PYTHON map</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="conj"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">conj</span>(<span class="sig-arg">iterable</span>,
+        <span class="sig-arg">x</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#conj">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a list containing all tbe elements of the iterable, followed 
+  by x</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="cons"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">cons</span>(<span class="sig-arg">x</span>,
+        <span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#cons">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a list with x as the first element, followed by the elements 
+  of the iterable.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="concat"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">concat</span>(<span class="sig-arg">*args</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#concat">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Eager version of concat</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="take"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">take</span>(<span class="sig-arg">n</span>,
+        <span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#take">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Return a list of the first n iterms of the given iterable</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="take_last"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -1301,6 +1504,106 @@ e.g. reduce(plus, [1,2,3]) -&gt; 6
   
   <p>Returns a list of the last n items of the given iterable. Currently 
   will hold the whole iterable in memory..</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="nth"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">nth</span>(<span class="sig-arg">iterable</span>,
+        <span class="sig-arg">n</span>,
+        <span class="sig-arg">default</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#nth">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the nth item from an iterable, or a default value</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="take_nth"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">take_nth</span>(<span class="sig-arg">n</span>,
+        <span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#take_nth">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a list of every nth item in the iterable</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="rand_nth"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">rand_nth</span>(<span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#rand_nth">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a random element from an iterable</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="first"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">first</span>(<span class="sig-arg">iterable</span>,
+        <span class="sig-arg">default</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#first">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the first value from an iterable, or a default value</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="second"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">second</span>(<span class="sig-arg">iterable</span>,
+        <span class="sig-arg">default</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#second">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the second item from an iterable, or a default value.</p>
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -1347,6 +1650,26 @@ e.g. reduce(plus, [1,2,3]) -&gt; 6
   </dl>
 </td></tr></table>
 </div>
+<a name="rest"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">rest</span>(<span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#rest">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Takes an iterable, and returns a list starting at the second 
+  element.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="nxt"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -1363,6 +1686,65 @@ e.g. reduce(plus, [1,2,3]) -&gt; 6
   
   <p>Takes an iterable and returns a list starting at the second element. 
   Returns None if the iterable is empty</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="fnxt"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fnxt</span>(<span class="sig-arg">iterable</span>,
+        <span class="sig-arg">default</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#fnxt">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Same as first(inext(iterable))</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="nnxt"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">nnxt</span>(<span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#nnxt">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Same as nxt(inxt(iterable))</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="drop"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">drop</span>(<span class="sig-arg">n</span>,
+        <span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#drop">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a list without the first n items of the iterable.</p>
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -1384,6 +1766,88 @@ e.g. reduce(plus, [1,2,3]) -&gt; 6
   
   <p>Drops items from an iterable while pred is True. Returns a list 
   starting from the first item for while pred(item) is false.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="drop_last"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">drop_last</span>(<span class="sig-arg">n</span>,
+        <span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#drop_last">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a list of the iterable elements without the last n 
+  elements</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="but_last"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">but_last</span>(<span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#but_last">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a list of all elements of an iterable but the last</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="filter"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">filter</span>(<span class="sig-arg">pred</span>,
+        <span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#filter">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a list from an iterable with all values for which the 
+  predicate returns true removed.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="remove"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">remove</span>(<span class="sig-arg">pred</span>,
+        <span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#remove">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a list from an iterable with all values for which the 
+  predicate returns true removed.</p>
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -1432,6 +1896,46 @@ e.g. reduce(plus, [1,2,3]) -&gt; 6
   </dl>
 </td></tr></table>
 </div>
+<a name="flatten"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">flatten</span>(<span class="sig-arg">listOfLists</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#flatten">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Flatten one level of nesting, returning a list.</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="some"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">some</span>(<span class="sig-arg">pred</span>,
+        <span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#some">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns the first value x of an iterator where pred(x) is truthy, or 
+  None otherwise (is returning None idiomatic??)</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="keep"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -1469,6 +1973,46 @@ e.g. reduce(plus, [1,2,3]) -&gt; 6
   
   <p>Returns a list containing the first item in each it, then the second 
   etc. Continues until the end of the smallest sequence</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="interpose"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">interpose</span>(<span class="sig-arg">sep</span>,
+        <span class="sig-arg">iterable</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#interpose">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a list of the elements of the iterable separated by sep</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="zipmap"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">zipmap</span>(<span class="sig-arg">keys</span>,
+        <span class="sig-arg">vals</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#zipmap">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns a dictionary with keys mapped to the corresponding vals</p>
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -1563,6 +2107,25 @@ e.g. reduce(plus, [1,2,3]) -&gt; 6
   </dl>
 </td></tr></table>
 </div>
+<a name="repeat"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">repeat</span>(<span class="sig-arg">x</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#repeat">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Returns an infinite lazy sequence of x</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
 <a name="repeatedly"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -1606,6 +2169,92 @@ e.g. reduce(plus, [1,2,3]) -&gt; 6
   </dl>
 </td></tr></table>
 </div>
+<a name="natural_numbers"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">natural_numbers</span>()</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#natural_numbers">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>A lazy sequence of the natural numbers</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="powers_of"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">powers_of</span>(<span class="sig-arg">n</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#powers_of">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Lazily returns all powers of n, starting with 1</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<a name="fibonacci"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">fibonacci</span>(<span class="sig-arg">a</span>=<span class="sig-default">1</span>,
+        <span class="sig-arg">b</span>=<span class="sig-default">1</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="cljppy-pysrc.html#fibonacci">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>Lazily returns the fibonacci sequence</p>
+  <dl class="fields">
+  </dl>
+</td></tr></table>
+</div>
+<br />
+<!-- ==================== VARIABLES DETAILS ==================== -->
+<a name="section-VariablesDetails"></a>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr bgcolor="#70b0f0" class="table-header">
+  <td align="left" colspan="2" class="table-header">
+    <span class="table-header">Variables Details</span></td>
+</tr>
+</table>
+<a name="__package__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <h3 class="epydoc">__package__</h3>
+  
+  <dl class="fields">
+  </dl>
+  <dl class="fields">
+    <dt>Value:</dt>
+      <dd><table><tr><td><pre class="variable">
+<code class="variable-quote">'</code><code class="variable-string">cljppy</code><code class="variable-quote">'</code>
+</pre></td></tr></table>
+</dd>
+  </dl>
+</td></tr></table>
+</div>
 <br />
 <!-- ==================== NAVIGATION BAR ==================== -->
 <table class="navbar" border="0" width="100%" cellpadding="0"
@@ -1627,13 +2276,18 @@ e.g. reduce(plus, [1,2,3]) -&gt; 6
       <th>&nbsp;&nbsp;&nbsp;<a
         href="help.html">Help</a>&nbsp;&nbsp;&nbsp;</th>
 
-      <th class="navbar" width="100%"></th>
+  <!-- Project homepage -->
+      <th class="navbar" align="right" width="100%">
+        <table border="0" cellpadding="0" cellspacing="0">
+          <tr><th class="navbar" align="center"
+            >Cljppy</th>
+          </tr></table></th>
   </tr>
 </table>
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Fri Aug 30 20:51:12 2013
+    Generated by Epydoc 3.0.1 on Fri Aug 30 21:02:15 2013
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"
