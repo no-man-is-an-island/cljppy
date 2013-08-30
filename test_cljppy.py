@@ -133,6 +133,10 @@ def test_take_nth():
     assert take_nth(2, [1,2,3,4,5]) == [1,3,5]
     assert take(3, take_nth(3, fibonacci())) == [1,3,13]
 
+def test_distinct():
+    assert distinct([1,2,3,4,1,2]) == [1, 2, 3, 4]
+    assert take(5, distinct(natural_numbers())) == [0, 1, 2, 3, 4]
+
 def test_first():
     assert first([], None) == None
     assert first([1,2,3]) == 1

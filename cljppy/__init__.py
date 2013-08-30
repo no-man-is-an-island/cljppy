@@ -15,6 +15,7 @@
 #-------------------------------------------------------------------------------
 import itertools
 import random
+from sets import Set
 from cljppy.lazysequence import LazySequence
 
 #-------------------------------------------------------------------------------
@@ -259,6 +260,22 @@ def rand_nth(iterable):
         l = list(iterable)
     r = random.randint(0, len(l) - 1)
     return nth(iterable, r)
+
+def __distinct(iterable):
+    """
+    Returns an iterator of the distinct items from an iterable.
+    """
+    s = Set()
+    for x in iterable:
+        if x not in s:
+            yield x
+            s.add(x)
+
+def distinct(iterable):
+    """
+    Returns a lazy seq of the distinct items from an iterable.
+    """
+    return LazySequence(__distinct(iterable))
 
 def first(iterable, default=None):
     """
