@@ -95,6 +95,9 @@ class LazySequence(object):
                 self.realise_next()
 
     def realise_next(self):
+        """
+        Realises the next unrealised element
+        """
         try:
             self.__realised_segment.append(self.__source_it.next())
             self.__realised_segment_size += 1
@@ -102,6 +105,9 @@ class LazySequence(object):
             self.realised = True
 
     def realise_all(self):
+        """
+        Realises the entire sequence.
+        """
         if not self.realised:
             for x in self.__source_it:
                 self.__realised_segment.append(x)
