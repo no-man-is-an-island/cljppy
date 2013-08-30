@@ -62,6 +62,8 @@ class LazySequence(object):
         return self.__repr__()
 
     def __repr__(self):
+        self.realise_to(100)
+
         if self.realised and self.print_length >= self.__realised_segment_size:
             return str(self.__realised_segment)
 
@@ -83,6 +85,14 @@ class LazySequence(object):
 
     def __ne__(self, other):
         return not self.__eq__(other)
+
+    def realise_to(self, n):
+        """
+        Realises the lazy sequence up to the nth element.
+        """
+        if not self.realised:
+            while not (self.realised or self.__realised_segment_size >= n):
+                self.realise_next()
 
     def realise_next(self):
         try:

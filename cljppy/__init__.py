@@ -193,7 +193,8 @@ def cons(x, iterable):
 
 def concat(*args):
     """
-    Eager version of concat
+    Returns a lazy seq representing the concatenation of the elements in the supplied
+    collections.
     """
     return LazySequence(itertools.chain(*args))
 
