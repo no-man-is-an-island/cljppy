@@ -285,6 +285,9 @@ def test_reductions():
     assert reductions(concat, [[1], [2]], []) == [[], [1], [1,2]]
     assert take(3, reductions(conj, natural_numbers(), [])) == [[], [0], [0,1]]
 
+def test_cycle():
+    assert take(5, cycle([1, 2, 3])) == [1, 2, 3, 1, 2]
+
 def test_repeatedly():
     # NB: plus has a zero arity form that returns 0 (the identity)
     assert list(repeatedly(plus, 0)) == []

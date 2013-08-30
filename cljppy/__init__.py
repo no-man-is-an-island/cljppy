@@ -156,6 +156,7 @@ def not_any(pred, iterable):
 #-------------------------------------------------------------------------------
 def map(f, *iterables):
     """
+    Lazy map over one or more iterables (in tandem)..
     OVERRIDES THE STANDARD PYTHON map
     """
     return LazySequence(itertools.imap(f, *iterables))
@@ -699,6 +700,21 @@ def repeat(x):
     """
     return LazySequence(itertools.repeat(x))
 
+def __cycle(iterable):
+    """
+    Returns an infinite generator of repetitions of the items in
+    the iterable
+    """
+    while True:
+        for x in iterable:
+            yield x
+
+def cycle(iterable):
+    """
+    Returns an infinite lazy sequence of repetitions of the items in
+    the iterable
+    """
+    return LazySequence(__cycle(iterable))
 
 def __irepeatedly(f, n = None):
     """
