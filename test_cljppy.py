@@ -63,6 +63,9 @@ def test_partial():
     assert partial(take_last, 2)([1,2,3,4]) == [3, 4]
     assert apply(partial, [plus,1,2,3])() == 6
 
+def test_assoc():
+    assert assoc({}) == {}
+
 def test_merge():
     assert merge() == {}
     assert merge({"a": 1}) == {"a" : 1}

@@ -8,8 +8,38 @@
 # Created:     27/07/2013
 # Copyright:   (c) David Williams 2013
 #-------------------------------------------------------------------------------
+from cljppy.sequence import partition
+from cljppy.core import *
 
-from cljppy.core import*
+def __assoc(m, p):
+    """
+    Returns a copy of a map m with p[0] mapped to p[1]
+    """
+    s = m.copy()
+    s[p[0]] = p[1]
+    return s
+
+
+def assoc(m, *args):
+    """
+    Returns a copy of m with the given keys mapped to the given vals:
+
+    assoc({}, "a", 1, "b", 3)
+    => {'a': 1, 'b': 3}
+    """
+    return reduce(__assoc, partition(2, args), m)
+
+
+def dissoc(m, *keys):
+    """
+    Returns a copy of m with the mappings for the given keys removed.
+    """
+    r = m.copy()
+    for key in keys:
+        if key in r:
+            del r[key]
+
+    return r
 
 
 def pairwise_merge(f, m1, m2):
