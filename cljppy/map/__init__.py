@@ -130,12 +130,24 @@ def remove_vals(p, m):
 
 
 def filter_keys(p, m):
-    pass
+    """
+    Returns a copy of the map containing the key value pairs where
+    p(key) is true
+    """
+    r = {}
+    for k, v in m.iteritems():
+        if p(k):
+            r[k] = v
+
+    return r
 
 
 def remove_keys(p, m):
-    pass
-
+    """
+    Returns a copy of the map containing the key value pairs where
+    p(key) is false
+    """
+    return filter_keys(lambda v: not p(v), m)
 
 
 

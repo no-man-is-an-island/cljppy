@@ -49,3 +49,18 @@ def test_remove_keys_by_val():
 def test_filter_vals():
     assert filter_vals(even, {}) == {}
     assert filter_vals(even, {"a": 2, 2: 3}) == {"a": 2}
+
+
+def test_remove_vals():
+    assert remove_vals(even, {}) == {}
+    assert remove_vals(even, {"a": 2, 2: 3}) == {2: 3}
+
+
+def test_filter_keys():
+    assert filter_keys(even, {}) == {}
+    assert filter_keys(even, {1: 2, 2: 3}) == {2: 3}
+
+
+def test_remove_keys():
+    assert remove_keys(even, {}) == {}
+    assert remove_keys(even, {1: 2, 2: 3}) == {1: 2}
