@@ -54,6 +54,13 @@ def mult(*args):
         return reduce(lambda x,y: x * y, args)
 
 
+def even(x):
+    """
+    Predicate to check if an int is even
+    """
+    return (x % 2) == 0
+
+
 def dorun(iterable):
     """
     Evaluates all the values of an iterable, presumably for side-effects.
@@ -98,3 +105,5 @@ def partial(f, *args):
         return f(*chain(args, args_inner))
 
     return _function
+
+inc = partial(plus, 1)

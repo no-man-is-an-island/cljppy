@@ -74,3 +74,69 @@ def merge_with(f, *maps):
     the result by calling (f val-in-result val-in-latter).
     """
     return reduce(partial(pairwise_merge, f), maps, {})
+
+
+def map_vals(m, f, *args):
+    """
+    Returns a copy of m with f applied to each value.
+    """
+    r = {}
+
+    for k, v in m.iteritems():
+        r[k] = f(v, *args)
+
+    return r
+
+
+def filter_keys_by_val(p, m):
+    """
+    Returns a seq of keys for which p(val) returns true
+    """
+    keys = []
+
+    for k, v in m.iteritems():
+        if p(v):
+            keys.append(k)
+
+    return keys
+
+
+def remove_keys_bv_val(p, m):
+    """
+    Returns a seq of keys for which p(val) returns false
+    """
+    return filter_keys_by_val(lambda v: not p(v), m)
+
+
+def filter_vals(p, m):
+    """
+    Returns a new map containing those key value pairs where
+    p(value) is true
+    """
+    r = {}
+    for k, v in m.iteritems():
+        if p(v):
+            r[k] = v
+
+    return r
+
+
+def remove_vals(p, m):
+    """
+    Returns a new map containing those key value pairs where
+    p(value) is false
+    """
+    return filter_vals(lambda v: not p(v), m)
+
+
+def filter_keys(p, m):
+    pass
+
+
+def remove_keys(p, m):
+    pass
+
+
+
+
+
