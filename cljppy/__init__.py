@@ -15,7 +15,7 @@
 #-------------------------------------------------------------------------------
 import itertools
 
-from cljppy.sequence.lazysequence import LazySequence
+from cljppy.sequence.LazySequence import LazySequence
 from cljppy.map import *
 from cljppy.core import *
 from cljppy.sequence import *

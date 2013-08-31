@@ -13,7 +13,7 @@ import random
 import itertools
 from sets import Set
 
-from cljppy.sequence.lazysequence import LazySequence
+from cljppy.sequence.LazySequence import LazySequence
 from cljppy.sequence.predicates import *
 from cljppy.sequence.generators import *
 
