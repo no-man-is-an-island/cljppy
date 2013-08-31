@@ -65,6 +65,18 @@ def test_partial():
 
 def test_assoc():
     assert assoc({}) == {}
+    assert assoc({"a": 2}, "a", 1) == {"a": 1}
+    y = {"a": 2}
+    assert assoc(y, "a", 1, "b", 3) == {"a": 1, "b": 3}
+    assert y == {"a": 2}
+
+def test_dissoc():
+    assert dissoc({}) == {}
+    assert dissoc({}, "a") == {}
+
+    x = {"a": 2, "b": 3, "c": 1}
+    assert dissoc(x, "a", "b") == {"c": 1}
+    assert x == {"a": 2, "b": 3, "c": 1}
 
 def test_merge():
     assert merge() == {}
