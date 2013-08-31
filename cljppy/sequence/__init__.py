@@ -16,8 +16,6 @@ from sets import Set
 from cljppy.sequence.lazysequence import LazySequence
 from cljppy.sequence.predicates import *
 from cljppy.sequence.generators import *
-from cljppy.map import *
-
 
 def map(f, *iterables):
     """
