@@ -63,6 +63,21 @@ def test_partial():
     assert partial(take_last, 2)([1,2,3,4]) == [3, 4]
     assert apply(partial, [plus,1,2,3])() == 6
 
+def test_merge():
+    assert merge() == {}
+    assert merge({"a": 1}) == {"a" : 1}
+    assert merge({"a": 1}, {"a": 2, "b": 2}) == {"a": 2, "b": 2}
+
+def test_merge_with():
+    assert merge_with(plus) == {}
+    assert merge_with(plus, {"s": 1}) == {"s": 1}
+    assert merge_with(plus, {"a": 1}, {"a": 2, "b": 2}) == {"a": 3, "b": 2}
+
+def test_frequencies():
+    assert frequencies([]) == {}
+    assert frequencies([1,2,3]) == {1: 1, 2: 1, 3: 1}
+    assert frequencies([1,2,3,1,2,3]) == {1: 2, 2: 2, 3: 2}
+
 def test_empty():
     assert empty([]) == True
     assert empty([1,2,3]) == False

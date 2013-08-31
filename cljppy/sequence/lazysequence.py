@@ -1,3 +1,14 @@
+#-------------------------------------------------------------------------------
+# Name:        cljppy.sequence.lazysequence
+#
+# Purpose:     Class definition for an immutable lazy sequence
+#
+# Author:      David Williams
+#
+# Created:     27/07/2013
+# Copyright:   (c) David Williams 2013
+#-------------------------------------------------------------------------------
+
 class LazySequenceIterator(object):
     def __init__(self, lazyseq):
         self.__lazyseq = lazyseq
