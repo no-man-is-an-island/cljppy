@@ -13,7 +13,6 @@
 # Copyright:   (c) David Williams 2013
 # Licence:     MINE
 #-------------------------------------------------------------------------------
-import itertools
 
 from cljppy.sequence.LazySequence import LazySequence
 from cljppy.map import *
