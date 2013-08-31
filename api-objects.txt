@@ -1,6 +1,7 @@
 cljppy	cljppy-module.html
 cljppy.__package__	cljppy-module.html#__package__
 cljppy.core	cljppy.core-module.html
+cljppy.core.even	cljppy.core-module.html#even
 cljppy.core.partial	cljppy.core-module.html#partial
 cljppy.core.dorun	cljppy.core-module.html#dorun
 cljppy.core.constantly	cljppy.core-module.html#constantly
@@ -9,6 +10,7 @@ cljppy.core.mult	cljppy.core-module.html#mult
 cljppy.core.plus	cljppy.core-module.html#plus
 cljppy.core.doall	cljppy.core-module.html#doall
 cljppy.core.apply	cljppy.core-module.html#apply
+cljppy.core.inc	cljppy.core-module.html#inc
 cljppy.core.identity	cljppy.core-module.html#identity
 cljppy.core.doseq	cljppy.core-module.html#doseq
 cljppy.map'	cljppy.map%27-module.html
@@ -42,9 +44,9 @@ cljppy.sequence.interleave	cljppy.sequence-module.html#interleave
 cljppy.sequence.drop	cljppy.sequence-module.html#drop
 cljppy.sequence.some	cljppy.sequence-module.html#some
 cljppy.sequence.second	cljppy.sequence-module.html#second
-cljppy.sequence.zipmap	cljppy.sequence-module.html#zipmap
 cljppy.sequence.__ireductions	cljppy.sequence-module.html#__ireductions
 cljppy.sequence.but_last	cljppy.sequence-module.html#but_last
+cljppy.sequence.zipmap	cljppy.sequence-module.html#zipmap
 cljppy.sequence.drop_last	cljppy.sequence-module.html#drop_last
 cljppy.sequence.interpose	cljppy.sequence-module.html#interpose
 cljppy.sequence.nth	cljppy.sequence-module.html#nth
