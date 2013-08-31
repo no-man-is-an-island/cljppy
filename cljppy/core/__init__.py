@@ -10,6 +10,7 @@
 # Copyright:   (c) David Williams 2013
 #-------------------------------------------------------------------------------
 from itertools import chain
+from threading import Thread
 
 
 def identity(x):
@@ -107,3 +108,16 @@ def partial(f, *args):
     return _function
 
 inc = partial(plus, 1)
+
+
+def parallelise(*arity_zero_funcs):
+    """
+    Will parallelise calls to any number of zero-arity funcs,
+    terminating when they have all completed. Since python doesn't *really*
+    have parallelisation, only concurrency, this should be used for
+    functions which block on non-python processes (e.g. shell commands)
+    """
+    # TODO: Check for exceptions
+    threads = [Thread(target=f) for f in arity_zero_funcs]
+    doseq(Thread.start, threads)
+    doseq(Thread.join, threads)
