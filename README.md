@@ -13,11 +13,11 @@ All functions return LazySequence objects, which are immutable, lazily generated
 Every function that takes a LazySequence will take any kind of iterable object, but be aware that most functions will exhaust iterators (iterators=evil)
 
 ```
+natural_numbers()
+=> [0, 1, 2, 3, 4, ...]
+
 take(5, reductions(plus, natural_numbers()))
 => [0, 1, 3, 6, 10]
-
-def even(x):
-	return (x % 2) == 0
 
 take(5, filter(even, natural_numbers()))
 => [0, 2, 4, 6, 8]
@@ -31,3 +31,7 @@ def ngrams(n, s):
 ngrams(3, [1,2,3,4,5])
 => [[1], [1, 2], [1, 2, 3], [2, 3, 4], [3, 4, 5]]
 ```
+
+## Dependencies
+
+python-dev (if you want to use the reducers namespace)

@@ -97,6 +97,16 @@ class LazySequence(object):
     def __ne__(self, other):
         return not self.__eq__(other)
 
+    def __getstate__(self):
+        self.realise_all()
+        return self.__realised_segment
+
+    def __setstate__(self, state):
+        self.__realised_segment = state
+        self.__realised_segment_size = len(state)
+        self.realised = True
+        self.print_length = 100
+
     def realise_to(self, n):
         """
         Realises the lazy sequence up to the nth element.
