@@ -12,6 +12,7 @@
 import random
 import itertools
 from sets import Set
+from collections import deque
 
 from cljppy.sequence.LazySequence import LazySequence
 from cljppy.sequence.predicates import *
@@ -439,15 +440,15 @@ def __ipartition(n, iterable, step = None):
     if step == None:
         step = n
     step_count = step
-    last_n = []
+    last_n = deque(maxlen=n)
 
     for x in iter(iterable):
         step_count = min(step, step_count + 1)
         last_n.append(x)
-        last_n = take_last(n, last_n)
+        #last_n = take_last(n, last_n)
 
         if step_count == step and len(last_n) == n:
-            y = list(map(identity, last_n)) # Damn mutable data!
+            y = list(last_n) # Damn mutable data!
             step_count = 0
             yield y
 
@@ -470,7 +471,7 @@ def __ipartition_all(n, iterable, step = None):
     if step == None:
         step = n
     step_count = step
-    last_n = []
+    last_n = deque(maxlen=n)
 
     for x in iter(iterable):
         step_count = min(step, step_count + 1)
@@ -478,7 +479,7 @@ def __ipartition_all(n, iterable, step = None):
         last_n = take_last(n, last_n)
 
         if step_count == step and len(last_n) == n:
-            y = list(map(identity, last_n)) # Damn mutable data!
+            y = list(last_n) # Damn mutable data!
             step_count = 0
             yield y
 
