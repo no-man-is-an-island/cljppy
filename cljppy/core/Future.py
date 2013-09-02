@@ -13,4 +13,3 @@ class Future(object):
         self.__process = Process(target=f_star, args=[q])
         self.__process.start()
 
-    

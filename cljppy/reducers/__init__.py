@@ -27,6 +27,3 @@ def dispatch(f):
     return q.get
 
 
-def map(f):
-    def _map_fn(acc, v):
-
