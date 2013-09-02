@@ -476,7 +476,6 @@ def __ipartition_all(n, iterable, step = None):
     for x in iter(iterable):
         step_count = min(step, step_count + 1)
         last_n.append(x)
-        last_n = take_last(n, last_n)
 
         if step_count == step and len(last_n) == n:
             y = list(last_n) # Damn mutable data!
@@ -485,7 +484,7 @@ def __ipartition_all(n, iterable, step = None):
 
     for x in itertools.takewhile(not_empty, iterate(rest, last_n)):
         if step_count == step:
-            yield x
+            yield list(x)
             step_count = 0
         step_count += 1
 
