@@ -1,7 +1,8 @@
 #-------------------------------------------------------------------------------
 # Name:        cljppy.reducers
 #
-# Purpose:     This is going to be AWESOME. Prepare yourself.
+# Purpose:     Clojure-style parallel reducers (that actually get you parallelism with multiprocessing!)
+#              This is going to be AWESOME. Prepare yourself.
 #
 # Author:      David Williams
 #
@@ -12,16 +13,20 @@
 from processing import *
 
 
-def thread_off(f):
+def dispatch(f):
     """
     Takes something to do, does it on a separate process, and returns
-    a  fn that can be called to get the result
+    a fn that can be called to get the result (but will block forever
+    the second time it is called, so beware!!)
     """
     def f_star(q):
-        x = f()
-        q.put(x)
+        q.put(f())
     q = Queue()
     p = Process(target=f_star, args=[q])
     p.start()
     return q.get
+
+
+def map(f):
+    def _map_fn(acc, v):
 
