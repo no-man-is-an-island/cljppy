@@ -121,3 +121,23 @@ def parallelise(*arity_zero_funcs):
     threads = [Thread(target=f) for f in arity_zero_funcs]
     doseq(Thread.start, threads)
     doseq(Thread.join, threads)
+
+
+def memoize(f):
+    """
+    Takes a *pure* function and returns a memoized version of the function
+    that keeps a cache of the mapping from arguments
+    to results and, when calls with the same arguments are repeated often, has
+    higher performance at the expense of higher memory use.
+    """
+    cache = {}
+
+    def f_star(*args):
+        if args in cache:
+            return cache[args]
+        else:
+            result = f(*args)
+            cache[args] = result
+            return result
+
+    return f_star

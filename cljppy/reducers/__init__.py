@@ -10,20 +10,13 @@
 # Copyright:   (c) David Williams 2013
 #-------------------------------------------------------------------------------
 
-from processing import *
+from cljppy.core.Future import Future
 
 
-def dispatch(f):
-    """
-    Takes something to do, does it on a separate process, and returns
-    a fn that can be called to get the result (but will block forever
-    the second time it is called, so beware!!)
-    """
-    def f_star(q):
-        q.put(f())
-    q = Queue()
-    p = Process(target=f_star, args=[q])
-    p.start()
-    return q.get
+def map(map_fn):
+    def _mapper(reduce_fn):
+        def _new_reduce_fn(acc, v):
+            return reduce_fn(acc, map_fn(v))
 
-
+        return _new_reduce_fn
+    return _mapper
