@@ -14,5 +14,14 @@ class Reducible(object):
     def __iter__(self):
         return iter(self.__collection)
 
+    def __len__(self):
+        return len(self.__collection)
+
+    def __str__(self):
+        return "Reducible <" + str(self.__collection) + ">"
+
+    def __repr__(self):
+        return "Reducible <" + str(self.__collection) + ">"
+
     def reducer(self):
-        return self.reducer
+        return self.__reducer
