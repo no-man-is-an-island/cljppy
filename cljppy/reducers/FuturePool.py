@@ -1,14 +1,14 @@
-from cljppy import doseq, partition_all
+from cljppy import doseq, partition
 from cljppy.reducers.FutureConsumer import FutureConsumer
 from threading import Thread
 
 
 class FuturePool(object):
-    def __init__(self, f, data, poolsize=4, chunksize=512):
+    def __init__(self, f, data, poolsize=26, chunksize=512):
         self.__poolsize = poolsize
         self.__pool = []
         self.values = []
-        self.__partitions = partition_all(chunksize, data)
+        self.__partitions = partition(chunksize, data)
         self.__position = 0
         self.realised = False
         self.all_work_delivered = False
@@ -18,7 +18,6 @@ class FuturePool(object):
             self.__pool.append(FutureConsumer(f))
 
         self.dispatch()
-
         self.__blocking_thread = Thread(target=self.__block)
         self.__blocking_thread.start()
 
@@ -26,13 +25,16 @@ class FuturePool(object):
 
         if not self.all_work_delivered:
             for consumer in self.__pool:
-                try:
-                    part = self.__partitions[self.__position]
-                    consumer.put(part)
-                except IndexError:
-                    self.all_work_delivered = True
-                    return
-                self.__position += 1
+                if not self.all_work_delivered:
+                    try:
+                        part = self.__partitions[self.__position]
+                        consumer.put(part)
+                    except IndexError:
+                        consumer.cancel()
+                        self.all_work_delivered = True
+                    self.__position += 1
+                else:
+                    consumer.cancel()
 
             self.__partitions.realise_to(self.__position + self.__poolsize)
 
@@ -42,10 +44,14 @@ class FuturePool(object):
         return self.values
 
     def __block(self):
-        while not self.all_work_delivered:
+        flag = True
+        while flag:
             for consumer in self.__pool:
-                self.values.append(consumer.get())
+                if not consumer.cancelled:
+                    self.values.append(consumer.get())
+            flag = not self.all_work_delivered
             self.dispatch()
+
 
         doseq(FutureConsumer.cancel, self.__pool)
         self.realised = True
