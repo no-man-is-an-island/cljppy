@@ -33,8 +33,7 @@ class Future(object):
         return self.deref()
 
     def __del__(self):
-        print "Destructor called"
-        self.cancel()
+        self.finalise()
 
     def deref(self):
         if self.cancelled:
@@ -42,12 +41,18 @@ class Future(object):
 
         if not self.realised:
             self.value = self.__queue.get()
-            self.__process.join()
+            self.finalise()
             self.realised = True
 
         return self.value
 
     def cancel(self):
         if not self.realised:
-            self.__process.terminate()
+            self.finalise()
             self.cancelled = True
+
+    def finalise(self):
+        self.__queue.close()
+        self.__queue.jointhread()
+        self.__process.join()
+        self.__process.terminate()

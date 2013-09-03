@@ -34,4 +34,4 @@ ngrams(3, [1,2,3,4,5])
 
 ## Dependencies
 
-python-dev (if you want to use the reducers namespace)
+python-dev (if you want to use the reducers or Future class)
