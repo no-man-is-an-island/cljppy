@@ -23,6 +23,7 @@ class Future(object):
 
         def f_star(q):
             q.put(f(*args))
+            #q.close()  # TODO: Check that this does something
 
         self.__queue = Queue()
         self.__process = Process(target=f_star, args=[self.__queue])
