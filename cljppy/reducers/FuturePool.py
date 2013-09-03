@@ -1,4 +1,4 @@
-from cljppy.sequence import partition
+from cljppy import doseq, partition_all
 from cljppy.reducers.FutureConsumer import FutureConsumer
 from threading import Thread
 
@@ -7,8 +7,46 @@ class FuturePool(object):
     def __init__(self, f, data, poolsize=4, chunksize=512):
         self.__poolsize = poolsize
         self.__pool = []
-        self.__partitions = partition(chunksize, data)
+        self.values = []
+        self.__partitions = partition_all(chunksize, data)
         self.__position = 0
+        self.realised = False
+        self.all_work_delivered = False
+        self.__partitions.realise_to(self.__poolsize)
 
         for _ in range(poolsize):
-            consumer = FutureConsumer(f, self.__partitions[self.__position])
+            self.__pool.append(FutureConsumer(f))
+
+        self.dispatch()
+
+        self.__blocking_thread = Thread(target=self.__block)
+        self.__blocking_thread.start()
+
+    def dispatch(self):
+
+        if not self.all_work_delivered:
+            for consumer in self.__pool:
+                try:
+                    part = self.__partitions[self.__position]
+                    consumer.put(part)
+                except IndexError:
+                    self.all_work_delivered = True
+                    return
+                self.__position += 1
+
+            self.__partitions.realise_to(self.__position + self.__poolsize)
+
+    def deref(self):
+        if not self.realised:
+            self.__blocking_thread.join()
+        return self.values
+
+    def __block(self):
+        while not self.all_work_delivered:
+            for consumer in self.__pool:
+                self.values.append(consumer.get())
+            self.dispatch()
+
+        doseq(FutureConsumer.cancel, self.__pool)
+        self.realised = True
+        return

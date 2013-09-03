@@ -74,6 +74,7 @@ class FutureConsumer(object):
 
     def cancel(self):
         if not self.realised:
+            self.poison()
             self._finalise()
             self.cancelled = True
 
