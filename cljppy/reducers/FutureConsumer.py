@@ -9,22 +9,22 @@ class FutureConsumer(object):
         self.realised = False
         self.cancelled = False
 
-        def f_star(work_q, result_q):
-            v = work_q.get()
+        def f_star(connection):
+            v = connection.recv()
 
             while not v == "POISON_PILL_CLJPPY":
-                result_q.put(f(v))
-                v = work_q.get()
-            result_q.put("POISON_PILL_CLJPPY")
+                connection.send(f(v))
+                v = connection.recv()
+            connection.send("POISON_PILL_CLJPPY")
 
-        self.__work_queue = Queue()
-        self.__result_queue = Queue()
-        self.__process = Process(target=f_star, args=[self.__work_queue, self.__result_queue])
+        self.__pipe = Pipe()
+        self.__process = Process(target=f_star, args=[self.__pipe[0]])
         self.__process.start()
         self.values = []
         atexit.register(self.cancel)
 
-        self.__work_queue.putMany(vals)
+        for val in vals:
+            self.__pipe[1].send(val)
 
     def __call__(self):
         return self.deref()
@@ -36,19 +36,20 @@ class FutureConsumer(object):
         """
         Adds a value to the consumer's work queue
         """
-        self.__work_queue.put(val)
+        self.__pipe[1].send(val)
 
     def putMany(self, vals):
         """
         Adds values to the consumer's work queue
         """
-        self.__work_queue.putMany(vals)
+        for val in vals:
+            self.__pipe[1].send(val)
 
     def poison(self):
         """
         Delivers the poison pill to the future
         """
-        self.__work_queue.put("POISON_PILL_CLJPPY")
+        self.__pipe[1].send("POISON_PILL_CLJPPY")
 
     def get(self):
         """
@@ -62,7 +63,7 @@ class FutureConsumer(object):
         if self.realised:
             return self.values
 
-        v = self.__result_queue.get()
+        v = self.__pipe[1].recv()
 
         if v == "POISON_PILL_CLJPPY":
             self.realised = True
@@ -77,7 +78,7 @@ class FutureConsumer(object):
             self.cancelled = True
 
     def _finalise(self):
-        self.__work_queue.close()
-        self.__result_queue.close()
+        self.__pipe[0].close()
+        self.__pipe[1].close()
         self.__process.join()
         self.__process.terminate()
