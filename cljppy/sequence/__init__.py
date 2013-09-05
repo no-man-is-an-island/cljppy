@@ -437,7 +437,7 @@ def __ipartition(n, iterable, step = None):
     apart. If step is not supplied, defaults to n, i.e. the partitions
     do not overlap.
     """
-    if step == None:
+    if step is None:
         step = n
     step_count = step
     last_n = deque(maxlen=n)

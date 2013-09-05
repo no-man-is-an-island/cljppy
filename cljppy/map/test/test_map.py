@@ -21,7 +21,7 @@ def test_dissoc():
 
 def test_merge():
     assert merge() == {}
-    assert merge({"a": 1}) == {"a" : 1}
+    assert merge({"a": 1}) == {"a": 1}
     assert merge({"a": 1}, {"a": 2, "b": 2}) == {"a": 2, "b": 2}
 
 
@@ -64,3 +64,16 @@ def test_filter_keys():
 def test_remove_keys():
     assert remove_keys(even, {}) == {}
     assert remove_keys(even, {1: 2, 2: 3}) == {1: 2}
+
+
+def test_update_each():
+    assert update_each(dict(a=1, b=2, c=3), ("b", "c"), plus, 1) == dict(a=1, b=3, c=4)
+    assert update_each(dict(a=1, b=2, c=3), (), plus, 1) == dict(a=1, b=2, c=3)
+
+    # Returns a copy
+    original = dict(a=1, b=2, c=3)
+    update_each(original, ("a", "b", "c"), plus, 1)
+    assert original == dict(a=1, b=2, c=3)
+
+    # Passes none to mapping function if key is not found
+    assert update_each(dict(a=1, b=2, c=3), ("a", "z"), identity) == dict(a=1, b=2, c=3, z=None)

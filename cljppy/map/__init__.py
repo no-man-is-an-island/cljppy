@@ -150,5 +150,16 @@ def remove_keys(p, m):
     return filter_keys(lambda v: not p(v), m)
 
 
+def update_each(m, ks, f, *args):
+    """
+    Returns a shallow copy of m, updating the values for each of the
+    given keys in a map where f is a function that takes each previous
+    value and the supplied args and returns a new value.
+    """
+    copy = m.copy()
+    for k in ks:
+        copy[k] = f(copy.get(k), *args)
+    return copy
+
 
 
