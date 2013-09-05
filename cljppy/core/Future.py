@@ -17,7 +17,7 @@ class Future(object):
     """
     def __init__(self, f, *args):
         # Only one of cancelled and realised should ever be
-        # True. Really wish i could make these read only.
+        # True. Really wish I could make these read only.
         self.realised = False
         self.cancelled = False
         self.finalised = False
