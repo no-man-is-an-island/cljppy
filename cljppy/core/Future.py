@@ -46,12 +46,10 @@ class Future(object):
 
         if not self.realised:
             self.value = self.__pipe[1].recv()
-
-            if isinstance(self.value, Exception):
-                raise self.value
-
             self._finalise()
             self.realised = True
+            if isinstance(self.value, Exception):
+                raise self.value
 
         return self.value
 
