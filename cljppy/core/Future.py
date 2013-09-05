@@ -20,6 +20,7 @@ class Future(object):
         # True. Really wish i could make these read only.
         self.realised = False
         self.cancelled = False
+        self.finalised = False
 
         def f_star(q):
             try:
@@ -38,7 +39,8 @@ class Future(object):
         return self.deref()
 
     def __del__(self):
-        self._finalise()
+        if not self.finalised:
+            self._finalise()
 
     def deref(self):
         if self.cancelled:
@@ -59,6 +61,7 @@ class Future(object):
             self.cancelled = True
 
     def _finalise(self):
+        self.finalised = True
         self.__pipe[0].close()
         self.__pipe[1].close()
         self.__process.join()
