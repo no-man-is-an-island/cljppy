@@ -17,7 +17,13 @@ class Delay():
 
     def deref(self):
         if not self.realised:
-            self.__value = self.__computation()
+            try:
+                self.__value = self.__computation()
+            except Exception,e :
+                self.__value = e
+                self.realised = True
+                raise e
+
             self.realised = True
 
         return self.__value
