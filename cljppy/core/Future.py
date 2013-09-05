@@ -22,7 +22,11 @@ class Future(object):
         self.cancelled = False
 
         def f_star(q):
-            q.send(f(*args))
+            try:
+                v = f(*args)
+                q.send(v)
+            except Exception, e:
+                q.send(e)
             q.close()
 
         self.__pipe = Pipe()
@@ -42,6 +46,10 @@ class Future(object):
 
         if not self.realised:
             self.value = self.__pipe[1].recv()
+
+            if isinstance(self.value, Exception):
+                raise self.value
+
             self._finalise()
             self.realised = True
 
