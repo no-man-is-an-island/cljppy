@@ -10,11 +10,14 @@ class FutureConsumer(object):
         self.cancelled = False
 
         def f_star(connection):
-            v = connection.recv()
-
-            while not v == "POISON_PILL_CLJPPY":
-                connection.send(f(v))
+            try:
                 v = connection.recv()
+
+                while not v == "POISON_PILL_CLJPPY":
+                    connection.send(f(v))
+                    v = connection.recv()
+            except Exception, e:
+                connection.send(e)
             connection.send("POISON_PILL_CLJPPY")
 
         self.__pipe = Pipe()
@@ -64,6 +67,9 @@ class FutureConsumer(object):
             return self.values
 
         v = self.__pipe[1].recv()
+
+        if isinstance(v, Exception):
+            raise v
 
         if v == "POISON_PILL_CLJPPY":
             self.realised = True
