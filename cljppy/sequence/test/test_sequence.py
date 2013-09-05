@@ -226,3 +226,9 @@ def test_reductions():
     assert reductions(concat, []) == []
     assert reductions(concat, [[1], [2]], []) == [[], [1], [1, 2]]
     assert take(3, reductions(conj, natural_numbers(), [])) == [[], [0], [0, 1]]
+
+
+def test_reverse():
+    assert reverse(take(3, natural_numbers())) == [2, 1, 0]
+    assert reverse([0, 1, 2]) == [2, 1, 0]
+    assert reverse([]) == []

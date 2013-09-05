@@ -64,3 +64,7 @@ def test_partial():
     assert partial(plus, 1)(2, 3) == 6
     assert partial(take_last, 2)([1, 2, 3, 4]) == [3, 4]
     assert apply(partial, [plus, 1, 2, 3])() == 6
+
+
+def test_comp():
+    assert comp(partial(mult, 3), plus)(1, 2) == 9

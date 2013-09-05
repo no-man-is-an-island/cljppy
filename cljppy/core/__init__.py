@@ -25,8 +25,10 @@ def constantly(x):
     """
     Returns a function that takes any number of arguments and returns x
     """
+
     def _function(*args):
         return x
+
     return _function
 
 
@@ -41,7 +43,7 @@ def plus(*args):
     if len(args) == 0:
         return 0
     else:
-        return reduce(lambda x,y: x + y, args)
+        return reduce(lambda x, y: x + y, args)
 
 
 def mult(*args):
@@ -52,7 +54,7 @@ def mult(*args):
     if len(args) == 0:
         return 1
     else:
-        return reduce(lambda x,y: x * y, args)
+        return reduce(lambda x, y: x * y, args)
 
 
 def even(x):
@@ -102,10 +104,12 @@ def partial(f, *args):
     """
     Partial application of f to zero or more args
     """
+
     def _function(*args_inner):
         return f(*chain(args, args_inner))
 
     return _function
+
 
 inc = partial(plus, 1)
 
@@ -141,3 +145,21 @@ def memoize(f):
             return result
 
     return f_star
+
+
+def comp(*fs):
+    """
+    Takes a set of functions and returns a fn that is the composition
+    of those fns. The returned fn takes a variable number of args,
+    applies the rightmost of fns to the args, the next
+    fn (right-to-left) to the result, etc.
+    """
+    from cljppy.sequence import reverse, but_last, last
+
+    def _function(*args, **kwargs):
+        return reduce(
+            lambda acc, f: f(acc),
+            reverse(but_last(fs)),
+            last(fs)(*args, **kwargs))
+
+    return _function

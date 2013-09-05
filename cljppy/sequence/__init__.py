@@ -567,3 +567,9 @@ def frequencies(iterable):
         else:
             f[x] = 1
     return f
+
+
+def reverse(iterable):
+    r = list(iterable)
+    r.reverse()
+    return r
