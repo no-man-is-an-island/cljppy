@@ -20,4 +20,4 @@ from cljppy.sequence import *
 
 from cljppy.sequence.LazySequence import LazySequence
 from cljppy.core.Delay import Delay
-#from cljppy.core.Future import Future
+from cljppy.core.Future import Future

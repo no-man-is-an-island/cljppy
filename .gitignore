@@ -1,3 +1,4 @@
+*.egg
 libpeerconnection.log
 html
 MANIFEST

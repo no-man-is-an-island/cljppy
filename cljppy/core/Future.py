@@ -1,5 +1,5 @@
 import atexit
-from processing import *
+from multiprocessing import *
 
 
 class Future(object):
@@ -22,11 +22,11 @@ class Future(object):
         self.cancelled = False
 
         def f_star(q):
-            q.put(f(*args))
-            #q.close()  # TODO: Check that this does something
+            q.send(f(*args))
+            q.close()
 
-        self.__queue = Queue()
-        self.__process = Process(target=f_star, args=[self.__queue])
+        self.__pipe = Pipe()
+        self.__process = Process(target=f_star, args=[self.__pipe[0]])
         self.__process.start()
         atexit.register(self.cancel)
 
@@ -34,26 +34,26 @@ class Future(object):
         return self.deref()
 
     def __del__(self):
-        self.finalise()
+        self._finalise()
 
     def deref(self):
         if self.cancelled:
             return None
 
         if not self.realised:
-            self.value = self.__queue.get()
-            self.finalise()
+            self.value = self.__pipe[1].recv()
+            self._finalise()
             self.realised = True
 
         return self.value
 
     def cancel(self):
         if not self.realised:
-            self.finalise()
+            self._finalise()
             self.cancelled = True
 
-    def finalise(self):
-        self.__queue.close()
-        self.__queue.jointhread()
+    def _finalise(self):
+        self.__pipe[0].close()
+        self.__pipe[1].close()
         self.__process.join()
         self.__process.terminate()
