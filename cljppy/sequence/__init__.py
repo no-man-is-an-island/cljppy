@@ -13,10 +13,12 @@ import random
 import itertools
 from sets import Set
 from collections import deque
+from cljppy.core import apply
 
 from cljppy.sequence.LazySequence import LazySequence
 from cljppy.sequence.predicates import *
 from cljppy.sequence.generators import *
+
 
 def map(f, *iterables):
     """
@@ -570,6 +572,9 @@ def frequencies(iterable):
 
 
 def reverse(iterable):
+    """
+    Return a reversed copy of an iterable. Non-lazy
+    """
     r = list(iterable)
     r.reverse()
     return r

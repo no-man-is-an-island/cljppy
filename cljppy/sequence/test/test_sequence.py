@@ -1,4 +1,6 @@
+from cljppy import apply
 from cljppy.sequence import *
+from cljppy.sequence import reverse
 
 
 def test_frequencies():
@@ -232,3 +234,7 @@ def test_reverse():
     assert reverse(take(3, natural_numbers())) == [2, 1, 0]
     assert reverse([0, 1, 2]) == [2, 1, 0]
     assert reverse([]) == []
+
+    x = [1, 2, 3, 4, 5]
+    y = reverse(x)
+    assert x == [1, 2, 3, 4, 5]

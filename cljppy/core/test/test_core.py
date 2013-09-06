@@ -1,3 +1,4 @@
+from cljppy import apply, partial
 from cljppy.sequence import concat, take_last
 from cljppy.sequence.generators import repeatedly
 from cljppy.core import *
@@ -51,20 +52,3 @@ def test_doseq():
     s = [[1], [2], [3]]
     assert doseq(_side_effecter, s) is None
     assert s == [[1, 0], [2, 0], [3, 0]]
-
-
-def test_apply():
-    assert apply(plus) == 0
-    assert apply(plus, [1, 2, 3]) == 6
-    assert apply(concat, [[1, 2, 3], [4, 5, 6]]) == [1, 2, 3, 4, 5, 6]
-
-
-def test_partial():
-    assert partial(plus)(1, 2, 3) == 6
-    assert partial(plus, 1)(2, 3) == 6
-    assert partial(take_last, 2)([1, 2, 3, 4]) == [3, 4]
-    assert apply(partial, [plus, 1, 2, 3])() == 6
-
-
-def test_comp():
-    assert comp(partial(mult, 3), plus)(1, 2) == 9

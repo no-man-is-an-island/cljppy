@@ -10,6 +10,7 @@
 #-------------------------------------------------------------------------------
 
 import itertools
+from cljppy import partial
 from cljppy.sequence.LazySequence import LazySequence
 from cljppy.sequence.predicates import *
 from cljppy.core import *

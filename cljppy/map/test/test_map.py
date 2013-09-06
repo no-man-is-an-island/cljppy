@@ -1,5 +1,5 @@
+from cljppy.core import partial, even, plus, identity
 from cljppy.map import *
-from cljppy.core import even
 
 
 def test_assoc():

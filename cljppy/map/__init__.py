@@ -8,8 +8,9 @@
 # Created:     27/07/2013
 # Copyright:   (c) David Williams 2013
 #-------------------------------------------------------------------------------
+from cljppy.core import partial
 from cljppy.sequence import partition
-from cljppy.core import *
+
 
 def __assoc(m, p):
     """
