@@ -1,5 +1,4 @@
-from cljppy import apply, partial
-from cljppy.sequence import concat, take_last
+from cljppy import partial
 from cljppy.sequence.generators import repeatedly
 from cljppy.core import *
 

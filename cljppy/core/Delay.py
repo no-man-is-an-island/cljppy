@@ -20,10 +20,12 @@ class Delay():
             try:
                 self.__value = self.__computation()
             except Exception,e :
-                self.__value = e
+                self.__exception = e
                 self.realised = True
-                raise e
 
             self.realised = True
+
+        if hasattr(self, "__exception"):
+            raise self.__exception
 
         return self.__value

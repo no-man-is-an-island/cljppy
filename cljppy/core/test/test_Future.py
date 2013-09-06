@@ -25,6 +25,11 @@ def test_future_can_handle_exceptions():
 
     with pytest.raises(Exception) as e:
         f()
+        # We test the message because exception
+        # will have been pickled so we can't use
+        # identity
         assert e.message == "This is a foo"
 
-    assert isinstance(f(), Exception)
+    with pytest.raises(Exception) as e:
+        f()
+        assert e.message == "This is a foo"

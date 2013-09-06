@@ -47,13 +47,18 @@ class Future(object):
             return None
 
         if not self.realised:
-            self.value = self.__pipe[1].recv()
+            result = self.__pipe[1].recv()
+            if isinstance(result, Exception):
+                self.exception = result
+            else:
+                self.__value = result
             self._finalise()
             self.realised = True
-            if isinstance(self.value, Exception):
-                raise self.value
 
-        return self.value
+        if hasattr(self, "exception"):
+            raise self.exception
+
+        return self.__value
 
     def cancel(self):
         if not self.realised:
