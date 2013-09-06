@@ -22,6 +22,17 @@ def comp(*fs):
     return _function
 
 
+def juxt(*fs):
+    """
+    Takes a set of functions and returns a fn that is the juxtaposition
+    of those fns. The returned fn takes a variable number of args, and
+    returns a vector containing the result of applying each fn to the
+    args (left-to-right).
+    ((juxt a b c) x) => [(a x) (b x) (c x)]
+    """
+    pass
+
+
 def memoize(f):
     """
     Takes a *pure* function and returns a memoized version of the function
