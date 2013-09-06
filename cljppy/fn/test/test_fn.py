@@ -23,3 +23,4 @@ def test_comp():
 def test_juxt():
     assert juxt()(1, 2, 3) == []
     assert juxt(partial(plus, 1), partial(plus, -1))(1) == [2, 0]
+    assert juxt(partial(plus, 1), partial(plus, -1))() == [1, -1]
