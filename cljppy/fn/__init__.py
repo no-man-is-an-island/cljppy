@@ -1,5 +1,5 @@
 from threading import Thread
-from cljppy.sequence import reverse, but_last, last, doseq, empty
+from cljppy.sequence import reverse, but_last, last, doseq, empty, map
 from cljppy.core import identity
 
 
@@ -30,7 +30,10 @@ def juxt(*fs):
     args (left-to-right).
     ((juxt a b c) x) => [(a x) (b x) (c x)]
     """
-    pass
+    def _juxt(*args):
+        return list(map(lambda f: f(*args), fs))
+
+    return _juxt
 
 
 def memoize(f):

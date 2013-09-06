@@ -18,3 +18,8 @@ def test_partial():
 def test_comp():
     assert comp(partial(mult, 3), plus)(1, 2) == 9
     assert comp() == identity
+
+
+def test_juxt():
+    assert juxt()(1, 2, 3) == []
+    assert juxt(partial(plus, 1), partial(plus, -1))(1) == [2, 0]
