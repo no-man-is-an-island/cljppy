@@ -52,3 +52,8 @@ def test_doseq():
     s = [[1], [2], [3]]
     assert doseq(_side_effecter, s) is None
     assert s == [[1, 0], [2, 0], [3, 0]]
+
+
+def test_strcat():
+    assert strcat() == ""
+    assert strcat(1,2,3,4) == "1234"

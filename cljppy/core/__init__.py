@@ -56,6 +56,13 @@ def mult(*args):
         return reduce(lambda x, y: x * y, args)
 
 
+def strcat(*args):
+    """
+    Multi-arity string joining
+    """
+    return reduce(lambda x, y: str(x) + str(y), args, "")
+
+
 def even(x):
     """
     Predicate to check if an int is even
