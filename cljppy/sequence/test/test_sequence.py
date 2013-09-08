@@ -26,7 +26,6 @@ def test_concat():
 def test_take():
     assert take(5, natural_numbers()) == [0, 1, 2, 3, 4]
     assert take(0, natural_numbers()) == []
-    assert take(0, natural_numbers()) == tuple([])
     assert take(5, []) == []
 
     # itake is lazy - it's one of those tests that either works or crashes your
