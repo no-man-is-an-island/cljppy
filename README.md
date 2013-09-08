@@ -10,7 +10,6 @@ I mainly just built this for fun. Since Python isn't optimised for this kind of 
 ## Example usage
 
 ### Sequence Manipulation
-
 All functions return LazySequence objects, which are immutable, lazily generated from the iterator which generates them, and are considered equal to a list containing the same data.
 Every function that takes a LazySequence will take any kind of iterable object, but be aware that most functions will exhaust iterators (iterators=evil)
 
@@ -34,9 +33,25 @@ ngrams(3, [1,2,3,4,5])
 => [[1], [1, 2], [1, 2, 3], [2, 3, 4], [3, 4, 5]]
 ```
 
-### Reducers
+### Futures
+Asynchronous calculation in a separate process using a slightly modified version of the Clojure <a href="http://clojuredocs.org/clojure_core/clojure.core/future" target="_blank">future</a> API.
 
-Parallel reduce with multiprocessing.
+```
+f = Future(slow_function, arg1, arg2, ..)
+=> <cljppy.core.Future.Future at 0x226d190>
+
+f.realised
+=> False
+
+f.deref() / f()
+=> <result> (blocks until computation is done)
+
+f.deref() / f()
+=> <result> (immediately)
+```
+
+### Reducers
+Parallel reduce over multiple processes.
 
 ```
 def increment_and_multiply_range(x):
