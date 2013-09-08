@@ -35,12 +35,12 @@ class LazySequence(object):
         iterable object.
         """
         self.realised = False
-        self.__realised_segment = []
+        self.__realised_segment = ()
         self.__realised_segment_size = 0
         self.__source_it = iter(source)
         self.print_length = printlength
         try:
-            self.__realised_segment.append(self.__source_it.next())
+            self.__realised_segment = self.__realised_segment + (self.__source_it.next(),)
             self.__realised_segment_size += 1
         except StopIteration:
             self.realised = True
@@ -89,10 +89,23 @@ class LazySequence(object):
         # A LazySequence can be equal to a list, a la Clojure
         elif type(other) == list:
             self.realise_all()
+            return other == list(self.__realised_segment)
+
+        # A LazySequence can be equal to a tuple, a la Clojure
+        elif type(other) == tuple:
+            self.realise_all()
             return other == self.__realised_segment
 
         else:
             return False
+
+    def __hash__(self):
+        """
+        We want the hash of a lazysequence to not depend on how realised it is.
+        i.e. it should be a hash of the seq of realised values
+        """
+        self.realise_all()
+        return hash(self.__realised_segment)
 
     def __ne__(self, other):
         return not self.__eq__(other)
@@ -120,7 +133,7 @@ class LazySequence(object):
         Realises the next unrealised element
         """
         try:
-            self.__realised_segment.append(self.__source_it.next())
+            self.__realised_segment = self.__realised_segment + (self.__source_it.next(),)
             self.__realised_segment_size += 1
         except StopIteration:
             self.realised = True
@@ -131,6 +144,6 @@ class LazySequence(object):
         """
         if not self.realised:
             for x in self.__source_it:
-                self.__realised_segment.append(x)
+                self.__realised_segment = self.__realised_segment + (x,)
                 self.__realised_segment_size += 1
             self.realised = True
