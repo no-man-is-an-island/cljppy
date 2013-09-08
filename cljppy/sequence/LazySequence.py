@@ -39,6 +39,7 @@ class LazySequence(object):
         self.__realised_segment = []
         self.__realised_segment_size = 0
         self.__source_it = iter(source)
+        self.__hashcode = None
         self.print_length = printlength
         try:
             self.__realised_segment.append(self.__source_it.next())
@@ -95,6 +96,12 @@ class LazySequence(object):
         else:
             return False
 
+    def __hash__(self):
+        self.realise_all()
+        if self.__hashcode is None:
+            self.__hashcode = hash(tuple(self.__realised_segment))
+        return self.__hashcode
+
     def __ne__(self, other):
         return not self.__eq__(other)
 
@@ -106,6 +113,7 @@ class LazySequence(object):
         self.__realised_segment = state
         self.__realised_segment_size = len(state)
         self.realised = True
+        self.__hashcode = None
         self.print_length = 100
 
     def realise_to(self, n):
