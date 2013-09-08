@@ -37,11 +37,13 @@ def __iconj(iterable, x):
         yield y
     yield x
 
+
 def conj(iterable, x):
     """
     Returns a list containing all tbe elements of the iterable, followed by x
     """
     return LazySequence(__iconj(iterable, x))
+
 
 def __icons(x, iterable):
     """
@@ -52,12 +54,14 @@ def __icons(x, iterable):
     for y in iter(iterable):
         yield y
 
+
 def cons(x, iterable):
     """
     Returns a list with x as the first element, followed by the elements of the
     iterable.
     """
     return LazySequence(__icons(x, iterable))
+
 
 def concat(*args):
     """
@@ -66,17 +70,20 @@ def concat(*args):
     """
     return LazySequence(itertools.chain(*args))
 
+
 def __itake(n, iterable):
     """
     Return an iterable of the first n iterms of the given iterable
     """
     return itertools.islice(iter(iterable), n)
 
+
 def take(n, iterable):
     """
     Return a list of the first n iterms of the given iterable
     """
     return LazySequence(__itake(n, iterable))
+
 
 def take_last(n, iterable):
     """
@@ -87,6 +94,7 @@ def take_last(n, iterable):
     lst = list(iterable)
     l = len(lst)
     return list(itertools.islice(lst, max(0, l - n), l))
+
 
 def nth(iterable, n, default=None):
     """
@@ -100,6 +108,7 @@ def nth(iterable, n, default=None):
     else:
         return next(itertools.islice(iter(iterable), n, None), default)
 
+
 def __itake_nth(n, iterable):
     """
     Returns a lazy sequence of every nth item in the iterable
@@ -111,11 +120,13 @@ def __itake_nth(n, iterable):
             yield x
         idx += 1
 
+
 def take_nth(n, iterable):
     """
     Returns a list of every nth item in the iterable
     """
     return LazySequence(__itake_nth(n, iterable))
+
 
 def rand_nth(iterable):
     """
@@ -128,6 +139,7 @@ def rand_nth(iterable):
     r = random.randint(0, len(l) - 1)
     return nth(iterable, r)
 
+
 def __distinct(iterable):
     """
     Returns an iterator of the distinct items from an iterable.
@@ -138,11 +150,13 @@ def __distinct(iterable):
             yield x
             s.add(x)
 
+
 def distinct(iterable):
     """
     Returns a lazy seq of the distinct items from an iterable.
     """
     return LazySequence(__distinct(iterable))
+
 
 def first(iterable, default=None):
     """
@@ -150,20 +164,23 @@ def first(iterable, default=None):
     """
     return nth(iterable, 0, default)
 
-def second(iterable, default = None):
+
+def second(iterable, default=None):
     """
     Returns the second item from an iterable, or a default value.
     """
     return first(rest(iterable), default)
 
-def ffirst(iterable, default = None):
+
+def ffirst(iterable, default=None):
     """
     Same as first(first(iterable), default).
     If given an empty iterable, will return default.
     """
     return first(first(iterable, []), default)
 
-def last(iterable, default = None):
+
+def last(iterable, default=None):
     """
     Returns the last element of an iterable.
     Constant time for sequence like things,
@@ -187,6 +204,7 @@ def last(iterable, default = None):
 
         return x
 
+
 def __irest(iterable):
     """
     Takes an iterable, and returns a generator starting at the
@@ -199,12 +217,14 @@ def __irest(iterable):
         else:
             yield x
 
+
 def rest(iterable):
     """
     Takes an iterable, and returns a list starting at the
     second element.
     """
     return LazySequence(__irest(iterable))
+
 
 def __inxt(iterable):
     """
@@ -220,6 +240,7 @@ def __inxt(iterable):
         else:
             return rest(it2)
 
+
 def nxt(iterable):
     """
     Takes an iterable and returns a list starting at the second element.
@@ -231,7 +252,8 @@ def nxt(iterable):
     else:
         return LazySequence(n)
 
-def fnxt(iterable, default = None):
+
+def fnxt(iterable, default=None):
     """
     Same as first(inext(iterable))
     """
@@ -240,6 +262,7 @@ def fnxt(iterable, default = None):
         return default
     else:
         return first(n, default)
+
 
 def nnxt(iterable):
     """
@@ -250,6 +273,7 @@ def nnxt(iterable):
         return None
     else:
         return nxt(n)
+
 
 def __idrop(n, iterable):
     """
@@ -262,11 +286,13 @@ def __idrop(n, iterable):
         else:
             m += 1
 
+
 def drop(n, iterable):
     """
     Returns a list without the first n items of the iterable.
     """
     return LazySequence(__idrop(n, iterable))
+
 
 def __idrop_while(pred, iterable):
     """
@@ -280,12 +306,14 @@ def __idrop_while(pred, iterable):
         if not head:
             yield x
 
+
 def drop_while(pred, iterable):
     """
     Drops items from an iterable while pred is True. Returns a list
     starting from the first item for while pred(item) is false.
     """
     return LazySequence(__idrop_while(pred, iterable))
+
 
 def drop_last(n, iterable):
     """
@@ -296,11 +324,13 @@ def drop_last(n, iterable):
     l = len(lst)
     return LazySequence(itertools.islice(lst, 0, max(0, l - n)))
 
+
 def but_last(iterable):
     """
     Returns a list of all elements of an iterable but the last
     """
     return drop_last(1, iterable)
+
 
 def filter(pred, iterable):
     """
@@ -309,12 +339,14 @@ def filter(pred, iterable):
     """
     return LazySequence(itertools.ifilter(pred, iterable))
 
+
 def remove(pred, iterable):
     """
     Returns a list from an iterable with all values for which the predicate
     returns true removed.
     """
     return LazySequence(itertools.ifilterfalse(pred, iterable))
+
 
 def __imapcat(f, *iterables):
     """
@@ -323,12 +355,14 @@ def __imapcat(f, *iterables):
     """
     return itertools.imap(f, concat(*iterables))
 
+
 def mapcat(f, *iterables):
     """
     Takes a function f and zero or more iterables. Returns a list which
     contains a mapping of f over the concatenation of the iterables.
     """
     return LazySequence(__imapcat(f, *iterables))
+
 
 def __imap_indexed(f, iterable):
     """
@@ -339,6 +373,7 @@ def __imap_indexed(f, iterable):
     """
     return itertools.imap(f, iterable, natural_numbers())
 
+
 def map_indexed(f, iterable):
     """
     Returns a list consisting of the result of applying f to 0
@@ -348,17 +383,20 @@ def map_indexed(f, iterable):
     """
     return LazySequence(__imap_indexed(f, iterable))
 
+
 def __iflatten(listOfLists):
     """
     Flatten one level of nesting, and return an iterable.
     """
     return apply(concat, listOfLists)
 
+
 def flatten(listOfLists):
     """
     Flatten one level of nesting, returning a list.
     """
     return LazySequence(__iflatten(listOfLists))
+
 
 def some(pred, iterable):
     """
@@ -370,6 +408,7 @@ def some(pred, iterable):
             return x
     return None
 
+
 def __ikeep(f, iterable):
     """
     Returns a iterable of f(x) for the x in iterable where f(x) is not None.
@@ -380,12 +419,14 @@ def __ikeep(f, iterable):
         if result != None:
             yield result
 
+
 def keep(f, iterable):
     """
     Returns a list of f(x) for the x in iterable where f(x) is not None.
     NB: If the return value is False, it will still be included
     """
     return LazySequence(__ikeep(f, iterable))
+
 
 def __iinterleave(*cs):
     """
@@ -415,17 +456,20 @@ def interleave(*cs):
     """
     return LazySequence(__iinterleave(*cs))
 
+
 def __iinterpose(sep, iterable):
     """
     Returns a lazy seq of the elements of the iterable separated by sep
     """
     return rest(interleave(itertools.repeat(sep), iterable))
 
+
 def interpose(sep, iterable):
     """
     Returns a list of the elements of the iterable separated by sep
     """
     return LazySequence(__iinterpose(sep, iterable))
+
 
 def zipmap(keys, vals):
     """
@@ -463,14 +507,14 @@ def __ipartition(n, iterable, step):
     for x in iter(iterable):
         step_count = min(step, step_count + 1)
         last_n.append(x)
-        #last_n = take_last(n, last_n)
 
         if step_count == step and len(last_n) == n:
             y = list(last_n) # Damn mutable data!
             step_count = 0
             yield y
 
-def partition(n, iterable, step = None):
+
+def partition(n, iterable, step=None):
     """
     Returns a list of lists of n items each, at offsets step
     apart. If step is not supplied, defaults to n, i.e. the partitions
@@ -479,6 +523,7 @@ def partition(n, iterable, step = None):
     if step is None:
         return LazySequence(partition_light(n, iterable, all=False))
     return LazySequence(__ipartition(n, iterable, step))
+
 
 def __ipartition_all(n, iterable, step):
     """
@@ -506,7 +551,8 @@ def __ipartition_all(n, iterable, step):
             step_count = 0
         step_count += 1
 
-def partition_all(n, iterable, step = None):
+
+def partition_all(n, iterable, step=None):
     """
     Returns a lazy sequence of lists of n items each, at offsets step
     apart. If step is not supplied, defaults to n, i.e. the partitions
@@ -515,6 +561,7 @@ def partition_all(n, iterable, step = None):
     if step is None:
         return LazySequence(partition_light(n, iterable, all=True))
     return LazySequence(__ipartition_all(n, iterable, step))
+
 
 def __ipartition_by(f, iterable):
     """
@@ -539,6 +586,7 @@ def __ipartition_by(f, iterable):
 
     yield partition
 
+
 def partition_by(f, iterable):
     """
     Applies f to each value in iterable, splitting it each time f returns
@@ -546,7 +594,8 @@ def partition_by(f, iterable):
     """
     return LazySequence(__ipartition_by(f, iterable))
 
-def __ireductions(function, iterable, initializer = None):
+
+def __ireductions(function, iterable, initializer=None):
     """
     Returns a lazy seq of the intermediate values of a reduce  of an iterable
     by f, starting with init. If init is not given, the first value in the
@@ -566,7 +615,8 @@ def __ireductions(function, iterable, initializer = None):
         accum_value = function(accum_value, x)
         yield accum_value
 
-def reductions(function, iterable, initializer = None):
+
+def reductions(function, iterable, initializer=None):
     """
     Returns a lazy seq of the intermediate values of a reduce  of an iterable
     by f, starting with init. If init is not given, the first value in the
