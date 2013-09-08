@@ -9,9 +9,9 @@
 # Created:     27/07/2013
 # Copyright:   (c) David Williams 2013
 #-------------------------------------------------------------------------------
-from cljppy import partition_all, partial, identity
+from cljppy import identity
 from cljppy.reducers.FuturePool import FuturePool
-from cljppy.reducers.Reducible import Reducible
+from cljppy.reducers.Reducible import Reducible, fold
 
 
 def p_map(map_fn, coll):
@@ -38,10 +38,11 @@ def rfilter(filter_fn, coll):
                 return reduce_fn(acc, v)
             else:
                 return acc
+        return _new_reduce_fn
     return Reducible(coll, _filterer)
 
 
-def rreduce(function, iterable, initializer=None):
+def rreduce(function, iterable, init=None):
     reducible = Reducible(iterable, identity)
-    return reducible.reduce(function)
+    return reducible.reduce(function, init)
 

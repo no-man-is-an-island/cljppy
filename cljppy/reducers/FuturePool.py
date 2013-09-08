@@ -20,6 +20,7 @@ class FuturePool(object):
 
         self.dispatch()
         self.__blocking_thread = Thread(target=self.__block)
+        self.__blocking_thread.daemon = True
         self.__blocking_thread.start()
 
     def dispatch(self):
@@ -45,15 +46,18 @@ class FuturePool(object):
         return concat(*self.values)
 
     def __block(self):
-        flag = True
-        while flag:
-            for consumer in self.__pool:
-                if not consumer.cancelled:
-                    self.values.append(consumer.get())
-            flag = not self.all_work_delivered
-            self.dispatch()
+        try:
+            flag = True
+            while flag:
+                for consumer in self.__pool:
+                    if not consumer.cancelled:
+                        self.values.append(consumer.get())
+                flag = not self.all_work_delivered
+                self.dispatch()
 
+            doseq(FutureConsumer.cancel, self.__pool)
+            self.realised = True
 
-        doseq(FutureConsumer.cancel, self.__pool)
-        self.realised = True
-        return
+        # Clean up when we're garbage collected
+        except IOError:
+            doseq(FutureConsumer.cancel, self.__pool)

@@ -27,6 +27,7 @@ class Future(object):
                 v = f(*args)
                 q.send(v)
             except Exception, e:
+                print e
                 q.send(e)
             q.close()
 
@@ -39,8 +40,7 @@ class Future(object):
         return self.deref()
 
     def __del__(self):
-        if not self.finalised:
-            self._finalise()
+        self._finalise()
 
     def deref(self):
         if self.cancelled:
@@ -67,7 +67,6 @@ class Future(object):
 
     def _finalise(self):
         self.finalised = True
+        self.__process.terminate()
         self.__pipe[0].close()
         self.__pipe[1].close()
-        self.__process.join()
-        self.__process.terminate()

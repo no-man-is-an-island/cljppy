@@ -8,6 +8,7 @@ class FutureConsumer(object):
         # True. Really wish i could make these read only.
         self.realised = False
         self.cancelled = False
+        self.finalised = False
 
         def f_star(connection):
             try:
@@ -79,13 +80,14 @@ class FutureConsumer(object):
         return v
 
     def cancel(self):
-        if not self.realised and not self.cancelled:
+        if not self.realised and not self.cancelled and not self.finalised:
             self.poison()
             self._finalise()
             self.cancelled = True
 
     def _finalise(self):
-        self.__pipe[0].close()
-        self.__pipe[1].close()
-        self.__process.join()
-        self.__process.terminate()
+        if not self.finalised:
+            self.finalised = True
+            self.__process.terminate()
+            self.__pipe[0].close()
+            self.__pipe[1].close()

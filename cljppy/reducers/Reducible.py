@@ -1,9 +1,9 @@
-from cljppy import partition_all, partial
+from cljppy import partition_all, partial, plus
 from cljppy.core import identity
 from cljppy.reducers.FuturePool import FuturePool
 
 
-def fold(reduce_fn, coll, combine_fn=None, chunksize=2048):
+def fold(reduce_fn, coll, combine_fn=None, chunksize=2048, init=None):
     """
     Parallel reduce. Uses a pool of <cpus> workers, and splits the
     collection into <chunk_size=2048> size chunks.
@@ -16,14 +16,16 @@ def fold(reduce_fn, coll, combine_fn=None, chunksize=2048):
     if combine_fn is None:
         combine_fn = reduce_fn
 
-    r_fn = lambda s: reduce(reduce_fn, s, combine_fn())
-    chunk_results = FuturePool(r_fn, partition_all(chunksize, coll), chunksize=1).deref()
-    return reduce(combine_fn, chunk_results, combine_fn())
+    if init is None:
+        init = combine_fn()
+
+    r_fn = lambda s: reduce(reduce_fn, s, init)
+    return reduce(combine_fn, FuturePool(r_fn, partition_all(chunksize, coll), chunksize=1).deref(), init)
 
 
 class Reducible(object):
     def __init__(self, collection, reducer=identity):
-        if isinstance(collection, Reducible):
+        if isinstance(collection, type(self)):
             self.__collection = collection
             self.__reducer = lambda x: collection.__reducer(reducer(x))
 
@@ -43,5 +45,5 @@ class Reducible(object):
     def __repr__(self):
         return "Reducible <" + str(self.__collection) + ">"
 
-    def reduce(self, f):
-        return fold(self.__reducer(f), self.__collection)
+    def reduce(self, f, init=None):
+        return fold(self.__reducer(f), self.__collection, init=init, combine_fn=f)
