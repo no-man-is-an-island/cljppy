@@ -1,7 +1,6 @@
-from cljppy import doseq, partition
+from cljppy import doseq, partition_all
 from cljppy.reducers.FutureConsumer import FutureConsumer
 from threading import Thread
-from collections import deque
 
 
 class FuturePool(object):
@@ -9,7 +8,7 @@ class FuturePool(object):
         self.__poolsize = poolsize
         self.__pool = []
         self.values = []
-        self.__partitions = partition_light(chunksize, data, all=True)
+        self.__partitions = partition_all(chunksize, data)
         self.__position = 0
         self.realised = False
         self.all_work_delivered = False
