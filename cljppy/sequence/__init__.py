@@ -522,7 +522,8 @@ def partition(n, iterable, step=None):
     """
     if step is None:
         return LazySequence(partition_light(n, iterable, all=False))
-    return LazySequence(__ipartition(n, iterable, step))
+    else:
+        return LazySequence(__ipartition(n, iterable, step))
 
 
 def __ipartition_all(n, iterable, step):
@@ -560,7 +561,8 @@ def partition_all(n, iterable, step=None):
     """
     if step is None:
         return LazySequence(partition_light(n, iterable, all=True))
-    return LazySequence(__ipartition_all(n, iterable, step))
+    else:
+        return LazySequence(__ipartition_all(n, iterable, step))
 
 
 def __ipartition_by(f, iterable):
