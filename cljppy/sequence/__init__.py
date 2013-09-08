@@ -42,7 +42,7 @@ def conj(iterable, x):
     """
     Returns a list containing all tbe elements of the iterable, followed by x
     """
-    return LazySequence(__iconj(iterable, x))
+    return list(__iconj(iterable, x))
 
 
 def __icons(x, iterable):
