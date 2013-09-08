@@ -3,22 +3,6 @@ from cljppy.reducers.FutureConsumer import FutureConsumer
 from threading import Thread
 from collections import deque
 
-def partition_light(n, s, all=True):
-    """
-    Lighter-weight (and faster) version of partition
-    """
-    x = deque(maxlen=n)
-    i = 0
-    for e in s:
-        x.append(e)
-        i += 1
-        if i == n:
-            yield list(x)
-            x = deque(maxlen=n)
-            i = 0
-    if all and i > 0:
-        yield x
-
 
 class FuturePool(object):
     def __init__(self, f, data, poolsize=26, chunksize=512):

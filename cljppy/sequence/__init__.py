@@ -433,14 +433,30 @@ def zipmap(keys, vals):
     """
     return dict(zip(keys, vals))
 
+
+def partition_light(n, s, all=True):
+    """
+    Lighter-weight (and faster) version of partition
+    """
+    x = deque(maxlen=n)
+    i = 0
+    for e in s:
+        x.append(e)
+        i += 1
+        if i == n:
+            yield list(x)
+            x = deque(maxlen=n)
+            i = 0
+    if all and i > 0:
+        yield list(x)
+
+
 def __ipartition(n, iterable, step = None):
     """
     Returns a lazy sequence of lists of n items each, at offsets step
     apart. If step is not supplied, defaults to n, i.e. the partitions
     do not overlap.
     """
-    if step is None:
-        step = n
     step_count = step
     last_n = deque(maxlen=n)
 
@@ -460,6 +476,8 @@ def partition(n, iterable, step = None):
     apart. If step is not supplied, defaults to n, i.e. the partitions
     do not overlap.
     """
+    if step is None:
+        return LazySequence(partition_light(n, iterable, all=False))
     return LazySequence(__ipartition(n, iterable, step))
 
 def __ipartition_all(n, iterable, step = None):
@@ -496,6 +514,8 @@ def partition_all(n, iterable, step = None):
     apart. If step is not supplied, defaults to n, i.e. the partitions
     do not overlap.
     """
+    if step is None:
+        return LazySequence(partition_light(n, iterable, all=True))
     return LazySequence(__ipartition_all(n, iterable, step))
 
 def __ipartition_by(f, iterable):
