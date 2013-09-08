@@ -28,21 +28,15 @@ def map(f, *iterables):
     return LazySequence(itertools.imap(f, *iterables))
 
 
-def __iconj(iterable, x):
-    """
-    Returns an iterable containing all the elements of the iterable followed by
-    x.
-    """
-    for y in iterable:
-        yield y
-    yield x
-
-
 def conj(iterable, x):
     """
     Returns a list containing all tbe elements of the iterable, followed by x
     """
-    return list(__iconj(iterable, x))
+    acc = []
+    for i in iterable:
+        acc.append(i)
+    acc.append(x)
+    return acc
 
 
 def __icons(x, iterable):

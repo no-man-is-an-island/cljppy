@@ -9,18 +9,9 @@
 # Created:     27/07/2013
 # Copyright:   (c) David Williams 2013
 #-------------------------------------------------------------------------------
-from cljppy import partition_all, partial
+from cljppy import partition_all, partial, identity
 from cljppy.reducers.FuturePool import FuturePool
 from cljppy.reducers.Reducible import Reducible
-
-
-def p_reduce(reduce_fn, coll, chunksize=2048):
-    """
-    Parallel reduce. Uses a pool of <cpus> workers, and splits the
-    collection into <chunk_size=2048> size chunks
-    """
-    r_fn = partial(reduce, reduce_fn)
-    return r_fn(FuturePool(r_fn, partition_all(chunksize, coll), chunksize=1).deref())
 
 
 def p_map(map_fn, coll):
@@ -31,7 +22,7 @@ def p_map(map_fn, coll):
     return FuturePool(map_fn, coll, chunksize=4086).deref()
 
 
-def map(map_fn, coll):
+def rmap(map_fn, coll):
     def _mapper(reduce_fn):
         def _new_reduce_fn(acc, v):
             return reduce_fn(acc, map_fn(v))
@@ -40,8 +31,17 @@ def map(map_fn, coll):
     return Reducible(coll, _mapper)
 
 
-#def reduce(function, iterable, initializer=None):
-#
-#   reducible = Reducible(iterable, identity)
-#   return reducible.reduce(function, initializer)
+def rfilter(filter_fn, coll):
+    def _filterer(reduce_fn):
+        def _new_reduce_fn(acc, v):
+            if filter_fn(v):
+                return reduce_fn(acc, v)
+            else:
+                return acc
+    return Reducible(coll, _filterer)
+
+
+def rreduce(function, iterable, initializer=None):
+    reducible = Reducible(iterable, identity)
+    return reducible.reduce(function)
 
