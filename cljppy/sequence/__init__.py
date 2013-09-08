@@ -451,7 +451,7 @@ def partition_light(n, s, all=True):
         yield list(x)
 
 
-def __ipartition(n, iterable, step = None):
+def __ipartition(n, iterable, step):
     """
     Returns a lazy sequence of lists of n items each, at offsets step
     apart. If step is not supplied, defaults to n, i.e. the partitions
@@ -480,7 +480,7 @@ def partition(n, iterable, step = None):
         return LazySequence(partition_light(n, iterable, all=False))
     return LazySequence(__ipartition(n, iterable, step))
 
-def __ipartition_all(n, iterable, step = None):
+def __ipartition_all(n, iterable, step):
     """
     Returns a lazy sequence of lists of n items each, at offsets step
     apart. If step is not supplied, defaults to n, i.e. the partitions
@@ -488,8 +488,6 @@ def __ipartition_all(n, iterable, step = None):
     """
 
     # Can probably do this more prettily. Code golf fail
-    if step == None:
-        step = n
     step_count = step
     last_n = deque(maxlen=n)
 
