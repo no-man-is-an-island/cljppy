@@ -14,12 +14,12 @@ from cljppy.reducers.FuturePool import FuturePool
 from cljppy.reducers.Reducible import Reducible, fold
 
 
-def p_map(map_fn, coll):
+def p_map(map_fn, coll, chunksize=4086):
     """
     Parallel map. Map fn needs to be pretty expensive to get over co-ordination
     overhead.
     """
-    return FuturePool(map_fn, coll, chunksize=4086).deref()
+    return FuturePool(map_fn, coll, chunksize=chunksize).deref()
 
 
 def rmap(map_fn, coll):

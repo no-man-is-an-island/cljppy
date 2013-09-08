@@ -18,6 +18,7 @@ from cljppy.core import *
 from cljppy.map import *
 from cljppy.sequence import *
 from cljppy.fn import *
+from cljppy.reducers import *
 
 from cljppy.sequence.LazySequence import LazySequence
 from cljppy.core.Delay import Delay
