@@ -9,6 +9,7 @@
 # Copyright:   (c) David Williams 2013
 #-------------------------------------------------------------------------------
 
+
 class LazySequenceIterator(object):
     def __init__(self, lazyseq):
         self.__lazyseq = lazyseq
@@ -29,7 +30,7 @@ class LazySequenceIterator(object):
 
 
 class LazySequence(object):
-    def __init__(self, source, printlength = 100):
+    def __init__(self, source, printlength=100):
         """
         Takes a 'source', which can be a generator or an
         iterable object.
