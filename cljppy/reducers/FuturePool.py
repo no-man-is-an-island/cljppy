@@ -1,10 +1,11 @@
-from cljppy import doseq, partition_all
+from cljppy import doseq, partition_all, partial, concat
 from cljppy.reducers.FutureConsumer import FutureConsumer
 from threading import Thread
+from multiprocessing import cpu_count
 
 
 class FuturePool(object):
-    def __init__(self, f, data, poolsize=26, chunksize=512):
+    def __init__(self, f, data, poolsize=cpu_count(), chunksize=512):
         self.__poolsize = poolsize
         self.__pool = []
         self.values = []
@@ -15,7 +16,7 @@ class FuturePool(object):
         self.__partitions.realise_to(self.__poolsize)
 
         for _ in range(poolsize):
-            self.__pool.append(FutureConsumer(f))
+            self.__pool.append(FutureConsumer(partial(map, f)))
 
         self.dispatch()
         self.__blocking_thread = Thread(target=self.__block)
@@ -41,7 +42,7 @@ class FuturePool(object):
     def deref(self):
         if not self.realised:
             self.__blocking_thread.join()
-        return self.values
+        return concat(*self.values)
 
     def __block(self):
         flag = True

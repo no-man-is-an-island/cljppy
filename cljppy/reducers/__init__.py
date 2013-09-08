@@ -9,30 +9,26 @@
 # Created:     27/07/2013
 # Copyright:   (c) David Williams 2013
 #-------------------------------------------------------------------------------
-from cljppy.sequence import partition, concat, partition_all
-from cljppy.core import identity, plus, doseq
-import cljppy.sequence
-
-from processing import Pool
-
-from cljppy.core.Future import Future
+from cljppy import partition_all, partial
+from cljppy.reducers.FuturePool import FuturePool
 from cljppy.reducers.Reducible import Reducible
 
 
-# def pool(f, partitions, n=4):
-#     acc = []
-#     for p in partition_all(n, partitions):
-#
-#         fs = []
-#         for r in p:
-#             fs.append(Future(f, r))
-#
-#         for fut in fs:
-#             acc.append(fut.deref())
-#             fut.finalise()
-#
-#     return acc
+def p_reduce(reduce_fn, coll, chunksize=2048):
+    """
+    Parallel reduce. Uses a pool of <cpus> workers, and splits the
+    collection into <chunk_size=2048> size chunks
+    """
+    r_fn = partial(reduce, reduce_fn)
+    return r_fn(FuturePool(r_fn, partition_all(chunksize, coll), chunksize=1).deref())
 
+
+def p_map(map_fn, coll):
+    """
+    Parallel map. Map fn needs to be pretty expensive to get over co-ordination
+    overhead.
+    """
+    return FuturePool(map_fn, coll, chunksize=4086).deref()
 
 
 def map(map_fn, coll):
