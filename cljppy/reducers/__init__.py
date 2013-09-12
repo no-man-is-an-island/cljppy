@@ -9,7 +9,7 @@
 # Created:     27/07/2013
 # Copyright:   (c) David Williams 2013
 #-------------------------------------------------------------------------------
-from cljppy import identity
+from cljppy import identity, conj
 from cljppy.reducers.FuturePool import FuturePool
 from cljppy.reducers.Reducible import Reducible, fold
 
@@ -46,3 +46,6 @@ def rreduce(function, iterable, init=None):
     reducible = Reducible(iterable, identity)
     return reducible.reduce(function, init)
 
+
+def into(coll1, coll2):
+    return rreduce(conj, coll2, coll1)

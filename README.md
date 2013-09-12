@@ -51,7 +51,7 @@ f.deref() / f()
 ```
 
 ### Reducers
-Parallel reduce over multiple processes.
+Parallel reduce over multiple processes (in the style explained in Rich Hickey's <a href="http://clojure.com/blog/2012/05/08/reducers-a-library-and-model-for-collection-processing.html" target="_blank">wonderful</a> <a href="http://clojure.com/blog/2012/05/15/anatomy-of-reducer.html" target="_blank">blogs</a>)
 
 ```
 def increment_and_multiply_range(x):
