@@ -66,6 +66,12 @@ def test_remove_keys():
     assert remove_keys(even, {1: 2, 2: 3}) == {1: 2}
 
 
+def test_select_keys():
+    assert select_keys({}, []) == {}
+    assert select_keys({}, ["a"]) == {}
+    assert select_keys({"a": 1, "b": 2}, ["a"]) == {"a": 1}
+
+
 def test_update_each():
     assert update_each(dict(a=1, b=2, c=3), ("b", "c"), plus, 1) == dict(a=1, b=3, c=4)
     assert update_each(dict(a=1, b=2, c=3), (), plus, 1) == dict(a=1, b=2, c=3)

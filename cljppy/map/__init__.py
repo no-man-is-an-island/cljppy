@@ -151,6 +151,14 @@ def remove_keys(p, m):
     return filter_keys(lambda v: not p(v), m)
 
 
+def select_keys(m, ks):
+    r = {}
+    for k in ks:
+        if k in m:
+            r[k] = m[k]
+    return r
+
+
 def update_each(m, ks, f, *args):
     """
     Returns a shallow copy of m, updating the values for each of the
