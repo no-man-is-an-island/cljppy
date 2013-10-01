@@ -1,6 +1,7 @@
 from cljppy import partial
 from cljppy.sequence.generators import repeatedly
 from cljppy.core import *
+from cljppy.core import identity
 
 
 def test_identity():
@@ -56,3 +57,8 @@ def test_doseq():
 def test_strcat():
     assert strcat() == ""
     assert strcat(1,2,3,4) == "1234"
+
+
+def test_group_by():
+    assert group_by(identity, []) == {}
+    assert group_by(len, ["a", "b" , "ab"]) == {1: ["a", "b"], 2: ["ab"]}
