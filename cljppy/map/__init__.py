@@ -89,6 +89,17 @@ def map_vals(m, f, *args):
     return r
 
 
+def map_keys(m, f, *args):
+    """
+    Returns a copy of m with f applied to each key
+    """
+    m2 = {}
+    for k in m.iterkeys():
+        m2[f(k, *args)] = m[k]
+
+    return m2
+
+
 def filter_keys_by_val(p, m):
     """
     Returns a seq of keys for which p(val) returns true
