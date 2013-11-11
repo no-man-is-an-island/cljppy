@@ -1,4 +1,4 @@
-from distutils.core import setup
+from setuptools import setup, find_packages
 from setuptools.command.test import test as TestCommand
 import sys
 
@@ -18,8 +18,8 @@ class PyTest(TestCommand):
 
 
 setup(name='cljppy',
-      version='0.1',
-      packages=['cljppy'],
+      version='0.2',
+      packages=find_packages(),
       tests_require=['pytest==2.3.5'],
       cmdclass = {'test': PyTest}
       )
