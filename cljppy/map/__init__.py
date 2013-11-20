@@ -182,4 +182,10 @@ def update_each(m, ks, f, *args):
     return copy
 
 
-
+def keyword(name):
+    """
+    Returns a function that takes a map and return map[name]
+    """
+    def _fn(m):
+        return m.get(name, None)
+    return _fn
