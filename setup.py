@@ -18,7 +18,7 @@ class PyTest(TestCommand):
 
 
 setup(name='cljppy',
-      version='0.2',
+      version='0.2.1',
       packages=find_packages(),
       tests_require=['pytest'],
       cmdclass = {'test': PyTest}
