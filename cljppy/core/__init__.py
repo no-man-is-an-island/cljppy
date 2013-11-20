@@ -119,6 +119,7 @@ def partial(f, *args):
 
 inc = partial(plus, 1)
 
+
 def group_by(f, coll):
     """
     Returns a map of the elements of coll keyed by the result of
@@ -134,3 +135,26 @@ def group_by(f, coll):
             m[f(x)] = [x]
 
     return m
+
+
+def every_pred(*ps):
+    """
+    Takes a set of predicates and returns a function f that returns true if all of its
+    composing predicates return a logical true value against all of its arguments, else
+    it returns false. Note that f is short-circuiting in that it will stop execution on
+    the first argument that triggers a logical false result against the original predicates.
+    """
+    def _fn(*args):
+        for p in ps:
+            if not p(*args):
+                return False
+        return True
+    return _fn
+
+def raises(error):
+    """
+    Returns a function that takes any number of arguments and raises error
+    """
+    def _fn(*args):
+        raise error
+    return _fn

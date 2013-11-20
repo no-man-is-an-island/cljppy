@@ -1,3 +1,4 @@
+import pytest
 from cljppy import partial
 from cljppy.sequence.generators import repeatedly
 from cljppy.core import *
@@ -62,3 +63,12 @@ def test_strcat():
 def test_group_by():
     assert group_by(identity, []) == {}
     assert group_by(len, ["a", "b" , "ab"]) == {1: ["a", "b"], 2: ["ab"]}
+
+def test_every_pred():
+    assert every_pred()()
+    assert every_pred(identity)(True)
+    assert not every_pred(identity)(False)
+    assert not every_pred(identity, constantly(False))(True)
+
+    # Should be lazy
+    assert not every_pred(identity, raises(RuntimeError('Should not happen')))(False)
